@@ -21,7 +21,7 @@ table_plot <- function(df, title = "", rownames = NULL){
   if( !is.data.frame(df) ) stop("Invalid df input")
   if( !is.character(title) ) stop("Title should be a string")
 
-  # table grob themes
+  # table grob themes: fill col/row headers a grey fill with bolded font
   axis_theme <- list(bg_params = list(fill = "#BFBFBF"), fg_params = list(fontface = "bold"))
   theme <- gridExtra::ttheme_default(rowhead = axis_theme, colhead = axis_theme)
 

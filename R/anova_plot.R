@@ -19,18 +19,19 @@
 #'
 anova_plot <- function(data, x, y){
 
-  # plot and
+  # plot and labels from the variable names
   p_subs <- substitute( ggplot(data = data, aes(x = x, y = y)) + geom_boxplot())
   labels <- sapply( as.character(substitute(list(x, y))[-1]), stringr::str_to_title )
   names(labels) <- c("x", "y")
 
+  # generate plot with the labels
   p <- eval(p_subs) + xlab(labels[1]) + ylab(labels[2])
 
-  # run anova & make a table plot
-  #
+  # run anova
   a_subs <- substitute( aov(y ~ x) )
   a <- eval(a_subs, data)
 
+  # convert anova table into a plot object
   a <- a %>%
     summary %>%
     .[[1]] %>%
