@@ -64,6 +64,9 @@ import_lib <- function(lib_opts){
     library(gridExtra)
     library(GGally)
     library(gtable)
+    
+    # set ggplot2 theme
+    theme_set(theme_bw())
   }
 
   if(lib_opts$model){
