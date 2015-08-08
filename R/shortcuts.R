@@ -31,16 +31,16 @@ blank_slate <- function(){
 
 #' @rdname shortcuts
 #' @export
-install_jn <- function() devtools::install_github("jnnguyen2/jn.general")
+install_jn <- function() devtools::install_github("jnguyen92/jn.general")
 
 #' @rdname shortcuts
 #' @export
 lib <- function(...){
-  
+
   args <- as.character(substitute(list(...))[-1])
-  
+
   lib_opts <- data.table::data.table(data = TRUE, viz = FALSE, model = FALSE, develop = FALSE) %>% .[, args := TRUE, with = FALSE]
-  
+
   suppressPackageStartupMessages( import_lib(lib_opts))
 }
 
