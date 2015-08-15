@@ -19,8 +19,8 @@ gen_gender(ncol = 1, name = "gender", probs = NULL, add.na = FALSE,
 gen_age(ncol = 1, name = "age", replace = TRUE, add.na = FALSE,
   as.factor = FALSE)
 
-gen_race(ncol = 1, name = "race", replace = TRUE, add.na = FALSE,
-  as.factor = FALSE)
+gen_race(ncol = 1, name = "race", replace = TRUE, probs = NULL,
+  add.na = FALSE, as.factor = TRUE)
 
 gen_directions(ncol = 1, name = "directions", probs = NULL,
   add.na = FALSE, as.factor = TRUE)

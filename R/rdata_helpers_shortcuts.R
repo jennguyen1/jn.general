@@ -39,7 +39,7 @@ gen_age <- function(ncol = 1, name = "age", replace = TRUE, add.na = FALSE, as.f
 
 #' @rdname shortcut_generators
 #' @export
-gen_race <- function(ncol = 1, name = "race", replace = TRUE, add.na = FALSE, as.factor = FALSE){
+gen_race <- function(ncol = 1, name = "race", replace = TRUE, probs = NULL, add.na = FALSE, as.factor = TRUE){
   gen_char(name = name, values = c("white", "black", "hispanic", "asian", "native", "multi"), ncol = ncol, probs = probs, add.na = add.na, as.factor = as.factor)
 }
 
