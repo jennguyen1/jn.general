@@ -1,7 +1,7 @@
 
 #' Reorder Columns in Data Frame
 #'
-#' Brins selected columns at the beginning and adds other columns at the end.
+#' Places specified columns at the front or end and includes other variables.
 #' Compatible with dplyr's special select functions.
 #'
 #' @param df a data frame
@@ -19,12 +19,9 @@
 
 reorder_cols <- function(df, ...){
 
-  # uses to_be to extract the columns for the beginning
-  ordered_df <- jn.general::to_be(df, dplyr::select, ...)
-
-  # combines the ordered columns at the beginning and non-ordered columns at the end
-  df_out <- cbind(ordered_df[["to_be"]], ordered_df[["not_to_be"]])
-
+  # include everything() to the specifications
+  df_out <- dplyr::select(df, ..., everything())
+  
   # return results
   return(df_out)
 }
