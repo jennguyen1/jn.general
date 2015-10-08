@@ -6,7 +6,7 @@ devtools::install_github("jnguyen92/jn.general")
 ## Functions include:
 - **anova plot**: generates boxplots and summary tables into concise visualization for one-way ANOVA
 - **duplicated data**: show duplicated rows by specified columns
-- **extract**: saves data generated from iterative model building and groups common subsets for easy extraction
+- **extract**: saves data generated from iterative, independent model builds and groups common data outputs for easy extraction
 - **mult_merge**: merge multiple data frames using data.table merging
 - **rdata**: generates a random data frame with options to specify a variety of column types
 - **refine**: wrapper for Filter. Applies a function (a function that returns a boolean) and returns the values which evaluate to TRUE
