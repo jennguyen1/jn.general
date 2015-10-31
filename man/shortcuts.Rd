@@ -5,6 +5,7 @@
 \alias{blank_slate}
 \alias{install_jn}
 \alias{lib}
+\alias{save_data}
 \alias{shortcuts}
 \title{Shortcut Functions}
 \usage{
@@ -13,6 +14,8 @@ blank_slate()
 install_jn()
 
 lib(...)
+
+save_data(file_name)
 
 x \%p\% y
 }
@@ -23,6 +26,8 @@ Things that I commonly use in convenient functions
 blank_slate() clears the environment and console \cr
 
 install_jn() installs the jn.general package \cr
+
+save_data(filename) saves all vars in environemtn \cr
 
 percent-p-percent is shortcut for paste0 \cr
 

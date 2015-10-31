@@ -16,7 +16,7 @@ should appear on the ordered data frame}
 a data frame whose columns are ordered as specified
 }
 \description{
-Brins selected columns at the beginning and adds other columns at the end.
+Places specified columns at the front or end and includes other variables.
 Compatible with dplyr's special select functions.
 }
 \examples{

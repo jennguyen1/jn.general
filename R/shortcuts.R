@@ -8,6 +8,8 @@
 #'
 #' install_jn() installs the jn.general package \cr
 #'
+#' save_data(filename) saves all vars in environemtn \cr
+#'
 #' percent-p-percent is shortcut for paste0 \cr
 #'
 #' lib() imports libraries depending on args: \cr
@@ -64,7 +66,7 @@ import_lib <- function(lib_opts){
     library(gridExtra)
     library(GGally)
     library(gtable)
-    
+
     # set ggplot2 theme
     theme_set(theme_bw())
   }
@@ -81,6 +83,10 @@ import_lib <- function(lib_opts){
   }
 
 }
+
+#' @rdname shortcuts
+#' @export
+save_data <- function(file_name) save(list = ls(), file_name %p% ".Rdata")
 
 #' @rdname shortcuts
 #' @export
