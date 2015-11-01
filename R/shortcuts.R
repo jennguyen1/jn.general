@@ -86,9 +86,5 @@ import_lib <- function(lib_opts){
 
 #' @rdname shortcuts
 #' @export
-save_data <- function(file_name) save(list = ls(), file = file_name %p% ".Rdata")
-
-#' @rdname shortcuts
-#' @export
 `%p%` <- function(x,y) paste0(x,y)
 
