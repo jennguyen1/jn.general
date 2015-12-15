@@ -8,8 +8,6 @@
 #'
 #' install_jn() installs the jn.general package \cr
 #'
-#' save_data(filename) saves all vars in environemtn \cr
-#'
 #' percent-p-percent is shortcut for paste0 \cr
 #'
 #' lib() imports libraries depending on args: \cr
@@ -74,6 +72,8 @@ import_lib <- function(lib_opts){
   if(lib_opts$model){
     # model training
     library(caret)
+    library(broom)
+    library(glmnet)
   }
 
   if(lib_opts$develop){

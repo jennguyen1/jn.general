@@ -10,15 +10,18 @@
 #'
 #' @import data.table
 #'
+#' @export
+#'
+#' @seealso \code{\link{remove_duplicated}} to remove duplicates
+#'
 #' @examples
 #' d <- data.frame(x = rep(1:3, each=4), y = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))
-#' duplicated_data(data = d, y, z)
-#' duplicated_data(d, a, z)
-#' duplicated_data(d)
+#' view_duplicated(data = d, y, z)
+#' view_duplicated(d, a, z)
+#' view_duplicated(d)
 #'
-#' @export
 
-duplicated_data <- function(data, ...){
+view_duplicated <- function(data, ...){
 
   ##################
   # Error Checking #

@@ -24,7 +24,7 @@
 #' to_be(mtcars, dplyr::filter, cyl != 4, mpg > 20)
 #' to_be(mtcars, dplyr::select, -one_of(c("gear", "vs")))
 #' to_be(mtcars, subset, subset = mpg > 20, select = c(cyl, hp, wt))
-#' to_be(iris, duplicated_data)
+#' to_be(iris, view_duplicated)
 #'
 #' # outputs data that contains no na's (complete cases) and data that contains na's
 #' x <- rdata(50, gen_char(values = c("A", "B"), name = "grp"), gen_num(5, 1:7, add.na = TRUE))
@@ -51,7 +51,7 @@ to_be <- function(x, f, ...){
   the_question$rownames <- rownames(the_question)
 
   # apply subset on the_question
-  ## fix: for functions like duplicated_data that act on all columns, including the rownames columns results in an error;
+  ## fix: for functions like view_duplicated that act on all columns, including the rownames columns results in an error;
   ## so for only these functions, rownames cannot be conserved (which makes sense because wouldn't want to run distinct/duplicated on rownames anyways)
   args <- substitute(list(...))
   if( length(args) == 1 ){
