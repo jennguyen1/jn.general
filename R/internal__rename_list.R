@@ -11,7 +11,7 @@ aux_rename_list <- function(x, name_entry){
     # if item is a list, recurse through and rename
   } else if( is.list(x)){
 
-    new_x_list <- lapply(x, rename_list, name_entry = name_entry)
+    new_x_list <- lapply(x, aux_rename_list, name_entry = name_entry)
     return(new_x_list)
 
     # if not a list or data frame, do nothing, return
