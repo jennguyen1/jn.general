@@ -53,6 +53,7 @@ import_lib <- function(lib_opts){
     library(stringr)
     library(plyr)
     library(dplyr)
+    library(tidyr)
     library(data.table)
   }
 
