@@ -41,7 +41,7 @@ lib <- function(...){
 
   lib_opts <- data.table::data.table(data = TRUE, viz = FALSE, model = FALSE, develop = FALSE) %>% .[, args := TRUE, with = FALSE]
 
-  suppressPackageStartupMessages( import_lib(lib_opts))
+  suppressWarnings( suppressPackageStartupMessages( import_lib(lib_opts) ) )
 }
 
 import_lib <- function(lib_opts){

@@ -10,6 +10,19 @@
 #'
 
 diagnostic_plots <- function(mod){
+
+  # glm diagnostic plot
+  if( class(mod) %in% "glm" ) {
+    # return glm_plot(mod)
+
+  # lm diagnostic plot
+  } else if( class(mod) %in% "lm" ) {
+    # return lm_plot(mod)
+  }
+}
+
+lm_plot <- function(mod){
+
   # Residuals vs Fitted Plot
   resids_v_fitted <- ggplot(mod, aes(.fitted, .resid)) +
     geom_point(alpha = 0.8) +
@@ -74,4 +87,8 @@ diagnostic_plots <- function(mod){
     influencePlot = influence_plot
   )
   return(out)
+}
+
+glm_plot <- function(){
+
 }
