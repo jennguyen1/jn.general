@@ -3,6 +3,7 @@
 export("%p%")
 export(anova_plot)
 export(blank_slate)
+export(diagnostic_plots)
 export(extract_list)
 export(gen_age)
 export(gen_bool)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/diagnostic_plots.R
 \name{diagnostic_plots}
 \alias{diagnostic_plots}
-\title{Diagnostic Plots for lm}
+\title{Diagnostic Plots for lm and glm}
 \usage{
 diagnostic_plots(mod)
 }
@@ -13,6 +13,6 @@ diagnostic_plots(mod)
 a list of diagnostic plots
 }
 \description{
-Generates the diagnostic plots in ggplot2, similar to the ones that are generated via the plot command. Currently available for lm models only
+Generates the diagnostic plots in ggplot2, similar to the ones that are generated via the plot command. Currently available for lm and glm models
 }
 
