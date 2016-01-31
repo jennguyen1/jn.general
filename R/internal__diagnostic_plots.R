@@ -68,6 +68,7 @@ lm_plot <- function(mod){
   # output
   out <- list(
     rvfPlot = resids_v_fitted,
+    srvfPlot = stdresids_v_fitted,
     qqPlot = qqnorm,
     slPlot = scale_location,
     cdPlot = cooks_dist,
@@ -129,7 +130,6 @@ glm_plot <- function(mod){
     # output
     out <- list(
       rvfPlot = resids_v_fitted,
-      srvfPlot = stdresids_v_fitted,
       hnrPlot = halfnorm.resid,
       hnlPlot = halfnorm.lev,
       hncPlot = halfnorm.cd
