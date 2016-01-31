@@ -7,7 +7,7 @@
 \usage{
 nhuyhoa()
 
-nhuyhoa_df_print(df, head = 5, ...)
+nhuyhoa_df_print(df, head = 5, data = TRUE, ...)
 }
 \description{
 Functions to use when running jekyll blog
