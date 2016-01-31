@@ -14,4 +14,4 @@ nhuyhoa <- function() servr::jekyll(dir = ".", input = c(".", "_source", "_posts
 
 #' @rdname nhuyhoa
 #' @export
-nhuyhoa_df_print <- function(df, head = 5) df %>% head(head) %>% knitr::kable(format = "html", align = 'c')
+nhuyhoa_df_print <- function(df, head = 5, ...) df %>% head(head) %>% knitr::kable(format = "html", ...)

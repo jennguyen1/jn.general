@@ -10,7 +10,13 @@ lm_plot <- function(mod){
     xlab("Fitted Values") + ylab("Residuals") +
     ggtitle("Residuals vs. Fitted")
 
-
+  # Residuals vs Fitted Plot
+  stdresids_v_fitted <- ggplot(mod, aes(.fitted, .stdresid)) +
+    geom_point(alpha = 0.8) +
+    geom_smooth(method = "loess", se = FALSE) +
+    geom_hline(yintercept = 0, col = "black", linetype = "dashed") +
+    xlab("Fitted Values") + ylab("Studentized Residuals") +
+    ggtitle("Residuals vs. Fitted")
 
   # qqline
   probs <- c(0.25, 0.75)
@@ -123,6 +129,7 @@ glm_plot <- function(mod){
     # output
     out <- list(
       rvfPlot = resids_v_fitted,
+      srvfPlot = stdresids_v_fitted,
       hnrPlot = halfnorm.resid,
       hnlPlot = halfnorm.lev,
       hncPlot = halfnorm.cd

@@ -9,11 +9,12 @@ Description: Code base for functions I use a lot
 License: JN
 LazyData: TRUE
 Imports:
-  foreach,
-  magrittr,
-  stringr,
-  data.table,
-  ggplot2,
-  grid,
-  gtable,
-  gridExtra
+    foreach,
+    magrittr,
+    stringr,
+    data.table,
+    ggplot2,
+    grid,
+    gtable,
+    gridExtra
+RoxygenNote: 5.0.1
