@@ -27,9 +27,9 @@ install_jn() installs the jn.general package \cr
 percent-p-percent is shortcut for paste0 \cr
 
 lib() imports libraries depending on args: \cr
- data: (data wrangling) magrittr, stirngr, plyr, dplyr, reshape2, data.table \cr
+ data: (data wrangling) magrittr, stringr, plyr, dplyr, tidyr, reshape2, data.table \cr
  viz: (data visualization) knitr, ggplot2, grid, gridExtra, GGally, gtable \cr
- model: (modeling) caret \cr
+ model: (modeling) broom, lme4, glmnet, caret \cr
  develop: (development) devtools, microbenchmark \cr
 
 nhuyhoa() generates nhuyhoa jekyll blog
