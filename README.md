@@ -1,7 +1,7 @@
 # jn.general
 
 ## Installation
-devtools::install_github("jnguyen92/jn.general")
+`devtools::install_github("jnguyen92/jn.general")`
 
 ## Functions include:
 
