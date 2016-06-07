@@ -14,7 +14,7 @@
 - **remove_duplicated**: removes duplicated rows by specified columns
 - **merge_mult**: merge multiple data frames using data.table merging
 - **to be or not to be**: returns the subset and anti-subset, supply own subsetting function or pre-existing functions (subset, filter, distinct, etc). Useful for splitting data sets and running analyses in parallel on both sets.
-- **reorder_cols**: extension of dplyr::select. Reorders columns based on selection syntax provided by dplyr::select and also appends unselected columns. 
+- **reorder_cols**: extension of `dplyr::select`. Reorders columns based on selection syntax provided by `dplyr::select` and also appends unselected columns. 
 
 **Misc Data Wrangling**
 - **shortcuts**: import libraries, wipe environment / blank slate, string concatenation shortcut
