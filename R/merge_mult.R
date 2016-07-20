@@ -89,7 +89,7 @@ merge_mult <- function(..., by, all = FALSE, all.x = NULL, suffixes = letters){
     for ( i in 2:length(l) ) {
 
       # choose suffixes based on what is merging
-      suffixes <- ifelse(i == length(l), suffix[(length(l)-1):length(l)], c(suffix[(i-1)], ""))
+      suffixes <- ifelse( rep(i == length(l), 2), suffix[(length(l)-1):length(l)], c(suffix[(i-1)], ""))
 
       if (is.null(all.x)) {
         merged <- merge(merged, l[[i]], by = by[[i - 1]], all = all, suffix = suffixes)
