@@ -3,7 +3,7 @@
 #'
 #' Fast merge multiple data frames, via data.table merge method
 #'
-#' @param ... data frames to be merged
+#' @param ... data frames to be merged or one list of all data frames to be merged
 #' @param by vector of shared column names to merge on or list of vectors where each element of list refers to the by value for the ith merge
 #' @param all logical; if FALSE, then an inner join on all data frames; else a full outer join on all data frames.
 #' @param all.x logical; if TRUE, then a left outer join on the first data frame listed
@@ -47,6 +47,7 @@ merge_mult <- function(..., by, all = FALSE, all.x = NULL, suffixes = letters){
 
   # generate the list of data tables
   l <- list(...)
+  if( !is.data.frame(l[[1]]) ) l <- l[[1]]
 
   # check that arguments were passed
   if( length(l) < 2 ) stop("At least 2 data frames must be supplied for merge")

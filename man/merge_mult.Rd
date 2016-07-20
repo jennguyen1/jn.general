@@ -7,7 +7,7 @@
 merge_mult(..., by, all = FALSE, all.x = NULL, suffixes = letters)
 }
 \arguments{
-\item{...}{data frames to be merged}
+\item{...}{data frames to be merged or one list of all data frames to be merged}
 
 \item{by}{vector of shared column names to merge on or list of vectors where each element of list refers to the by value for the ith merge}
 
