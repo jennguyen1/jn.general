@@ -53,7 +53,7 @@ merge_mult <- function(..., by, all = FALSE, all.x = NULL, suffixes = letters){
   if( missing(by) ) stop("Missing by argument")
 
   # check that there are enough suffixes for the list
-  if(length(suffixes) < length(l)) stop("The number of suffixes must be equal than the number of data frames")
+  if(length(suffixes) != length(l)) stop("The number of suffixes must be equal than the number of data frames")
 
   # check that by is either 1 key or has enough keys for the merge
   if( !((length(by) == 1) | (length(l) - length(by) == 1)) ) stop("Length of by argument must be either 1 or 1 less than the total data frames")
@@ -71,15 +71,34 @@ merge_mult <- function(..., by, all = FALSE, all.x = NULL, suffixes = letters){
   # if there is 1 id for all merge, makes it a replicated list to ensure consistency
   if(length(by) == 1) by <- rep(by, length(l)-1)
 
-  # merge all the data frames via a for loop (faster than Reduce); maintain suffixes
-  for(i in 2:length(l)){
-    if(is.null(all.x)){
-      merged <- merge(merged, l[[i]], by = by[[i-1]], all = all, suffix = c(suffix[i-1], suffix[i]))
-    } else{
-      merged <- merge(merged, l[[i]], by = by[[i-1]], all.x = all.x, suffix = c(suffix[i-1], suffix[i]))
-    }
-  }
   # note: must do all and all.x separately; doing them together in one call yields inconsistent results
+
+  # merge for two data frames
+  if(length(l) == 2){
+
+    if(is.null(all.x)){
+      merged <- merge(l[[1]], l[[2]], by = by[[1]], all = all, suffix = suffix)
+    } else{
+      merged <- merge(l[[1]], l[[2]], by = by[[1]], all.x = all.x, suffix = suffix)
+    }
+
+  } else{
+
+    # merge all the data frames via a for loop (faster than Reduce); maintain suffixes
+    for ( i in 2:length(l) ) {
+
+      # choose suffixes based on what is merging
+      suffixes <- ifelse(i == length(l), suffix[(length(l)-1):length(l)], c(suffix[(i-1)], ""))
+
+      if (is.null(all.x)) {
+        merged <- merge(merged, l[[i]], by = by[[i - 1]], all = all, suffix = suffixes)
+      }
+      else {
+        merged <- merge(merged, l[[i]], by = by[[i - 1]], all.x = all.x, suffix = suffixes)
+      }
+    }
+
+  }
 
   # return the results
   return(merged)
