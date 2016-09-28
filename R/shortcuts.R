@@ -76,6 +76,7 @@ import_lib <- function(lib_opts){
     library(broom)
     library(glmnet)
     library(lme4)
+    library(nlme)
   }
 
   if(lib_opts$develop){
