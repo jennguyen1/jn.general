@@ -77,6 +77,7 @@ import_lib <- function(lib_opts){
     library(glmnet)
     library(lme4)
     library(nlme)
+    library(lmerTest)
   }
 
   if(lib_opts$develop){
