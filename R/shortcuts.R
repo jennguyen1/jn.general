@@ -48,12 +48,13 @@ import_lib <- function(lib_opts){
 
   if(lib_opts$data){
     # data wrangling
-    library(reshape2)
     library(magrittr)
     library(stringr)
+    library(forcats)
+    library(reshape2)
+    library(tidyr)
     library(plyr)
     library(dplyr)
-    library(tidyr)
     library(data.table)
   }
 
