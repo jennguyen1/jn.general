@@ -56,6 +56,7 @@ import_lib <- function(lib_opts){
     library(plyr)
     library(dplyr)
     library(data.table)
+    library(dtplyr)
   }
 
   if(lib_opts$viz){
