@@ -58,6 +58,7 @@ import_lib <- function(lib_opts){
     library(dplyr)
     library(data.table)
     library(dtplyr)
+    library(tibble)
   }
 
   if(lib_opts$viz){
