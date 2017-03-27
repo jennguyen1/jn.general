@@ -39,7 +39,7 @@ lib <- function(...){
 
   args <- as.character(substitute(list(...))[-1])
 
-  lib_opts <- data.table::data.table(data = TRUE, viz = FALSE, model = FALSE, develop = FALSE) %>% .[, args := TRUE, with = FALSE]
+  lib_opts <- data.table::data.table(data = TRUE, viz = FALSE, model = FALSE, develop = FALSE) %>% .[, (args) := TRUE, with = FALSE]
 
   suppressWarnings( suppressPackageStartupMessages( import_lib(lib_opts) ) )
 }
@@ -51,7 +51,7 @@ import_lib <- function(lib_opts){
     library(magrittr)
     library(stringr)
     library(forcats)
-    library(purr)
+    #library(purr)
     library(reshape2)
     library(tidyr)
     library(plyr)
