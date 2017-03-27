@@ -39,7 +39,7 @@ lib <- function(...){
 
   args <- as.character(substitute(list(...))[-1])
 
-  lib_opts <- data.table::data.table(data = TRUE, viz = FALSE, model = FALSE, develop = FALSE) %>% .[, (args) := TRUE, with = FALSE]
+  lib_opts <- data.table::data.table(data = TRUE, viz = FALSE, model = FALSE, develop = FALSE) %>% .[, (args) := TRUE]
 
   suppressWarnings( suppressPackageStartupMessages( import_lib(lib_opts) ) )
 }
