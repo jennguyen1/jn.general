@@ -48,6 +48,7 @@ import_lib <- function(lib_opts){
 
   if(lib_opts$data){
     # data wrangling
+    library(optparse)
     library(magrittr)
     library(stringr)
     library(forcats)
