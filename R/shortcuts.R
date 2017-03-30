@@ -52,7 +52,7 @@ import_lib <- function(lib_opts){
     library(magrittr)
     library(stringr)
     library(forcats)
-    #library(purr)
+    library(purrr)
     library(reshape2)
     library(tidyr)
     library(plyr)
