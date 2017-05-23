@@ -97,3 +97,9 @@ import_lib <- function(lib_opts){
 #' @export
 `%p%` <- function(x,y) paste0(x,y)
 
+print_cmd_args <- function(){
+	cat("Command line args:\n")
+	cmdargs <- discard(opt, names(opt) %in% c('location', 'help'))
+	paste(names(cmdargs), ":", cmdargs) %>% paste(collapse = '\n') %>% cat
+	cat('\n\n')
+}
