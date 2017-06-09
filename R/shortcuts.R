@@ -16,6 +16,8 @@
 #'  model: (modeling) broom, lme4, glmnet, caret \cr
 #'  develop: (development) devtools, microbenchmark \cr
 #'
+#' print_cmd_args() outputs command line args 
+#'
 #' nhuyhoa() generates nhuyhoa jekyll blog
 #'
 #'
@@ -97,6 +99,8 @@ import_lib <- function(lib_opts){
 #' @export
 `%p%` <- function(x,y) paste0(x,y)
 
+#' @rdname shortcuts
+#' @export
 print_cmd_args <- function(){
 	cat("Command line args:\n")
 	cmdargs <- discard(opt, names(opt) %in% c('location', 'help'))
