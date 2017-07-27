@@ -88,4 +88,3 @@ all_r2_a <- extract$regression$r2$a
 test_null <- extract$test_null
 
 }
-

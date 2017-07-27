@@ -35,4 +35,3 @@ gender <- gen_gender(name = "sex")
 rdata(n = 100, ex1, ex2, ex3, gender, state1, state2, .id = FALSE)
 
 }
-

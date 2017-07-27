@@ -3,6 +3,11 @@
 #'
 #' Functions to use when running jekyll blog
 #'
+#' @details
+#' nhuyhoa() implements changes to the jekyll blog \cr
+#'
+#' nhuyhoa_df_print() formatting for tables on blog \cr
+#'
 #' @name nhuyhoa
 NULL
 

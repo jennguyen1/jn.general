@@ -66,4 +66,3 @@ is.iterative.list(ex3)
 # The idea is to return a named list at every iteration.
 # It is important it is named, even if it is completely NULL
 }
-

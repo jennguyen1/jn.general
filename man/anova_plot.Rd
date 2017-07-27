@@ -26,4 +26,3 @@ x <- anova_plot(iris, x = Species, y = Petal.Length)
 marrangeGrob(x, ncol = 2, nrow = 2)
 
 }
-

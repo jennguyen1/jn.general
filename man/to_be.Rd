@@ -46,4 +46,3 @@ replace_na <- y[["to_be"]] \%>\% dplyr::select(-X_1) \%>\% merge(replace_values,
 newx <- rbind(replace_na, y[["not_to_be"]])
 
 }
-

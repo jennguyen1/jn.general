@@ -22,4 +22,3 @@ Generates a table grob object for plotting with ggplot2.
 \examples{
 table_plot(head(mtcars), title = "Cars")
 }
-

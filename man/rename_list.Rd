@@ -71,4 +71,3 @@ named_output <- rename_list(output)
 extract <- extract_list(named_output)
 
 }
-

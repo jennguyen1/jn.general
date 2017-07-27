@@ -24,4 +24,3 @@ df <- plyr::rdply(5, rnorm(26))
 colnames(df) <- c("id", letters)
 reorder_cols(df, matches("[aeiou]"))
 }
-

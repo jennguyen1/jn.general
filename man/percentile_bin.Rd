@@ -23,4 +23,3 @@ Given the number of equally spaced bins, groups a vector by its percentiles
 x <- rpois(20, 4)
 percentile_bin(x)
 }
-

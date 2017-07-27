@@ -8,18 +8,11 @@
 #'
 #' install_jn() installs the jn.general package \cr
 #'
-#' percent-p-percent is shortcut for paste0 \cr
-#'
 #' lib() imports libraries depending on args: \cr
-#'  data: (data wrangling) magrittr, stringr, plyr, dplyr, tidyr, reshape2, data.table \cr
+#'  data: (data wrangling) magrittr, stringr, plyr, dplyr, tidyr, reshape2, data.table, etc \cr
 #'  viz: (data visualization) knitr, ggplot2, grid, gridExtra, GGally, gtable \cr
 #'  model: (modeling) broom, lme4, glmnet, caret \cr
-#'  develop: (development) devtools, microbenchmark \cr
-#'
-#' print_cmd_args() outputs command line args 
-#'
-#' nhuyhoa() generates nhuyhoa jekyll blog
-#'
+#'  develop: (development) optparse, logging \cr
 #'
 #' @name shortcuts
 NULL
@@ -50,18 +43,18 @@ import_lib <- function(lib_opts){
 
   if(lib_opts$data){
     # data wrangling
-    library(optparse)
     library(magrittr)
     library(stringr)
     library(forcats)
-    library(purrr)
     library(reshape2)
     library(tidyr)
     library(plyr)
     library(dplyr)
+    library(tibble)
+    library(purrr)
     library(data.table)
     library(dtplyr)
-    library(tibble)
+
   }
 
   if(lib_opts$viz){
@@ -89,21 +82,9 @@ import_lib <- function(lib_opts){
 
   if(lib_opts$develop){
     # development
-    library(devtools)
-    library(microbenchmark)
+    library(optparse)
+    library(logging)
   }
 
 }
 
-#' @rdname shortcuts
-#' @export
-`%p%` <- function(x,y) paste0(x,y)
-
-#' @rdname shortcuts
-#' @export
-print_cmd_args <- function(){
-	cat("Command line args:\n")
-	cmdargs <- discard(opt, names(opt) %in% c('location', 'help'))
-	paste(names(cmdargs), ":", cmdargs) %>% paste(collapse = '\n') %>% cat
-	cat('\n\n')
-}

@@ -2,14 +2,20 @@
 % Please edit documentation in R/nhuyhoa.R
 \name{nhuyhoa}
 \alias{nhuyhoa}
+\alias{nhuyhoa}
 \alias{nhuyhoa_df_print}
 \title{Functions for nhuyhoa jekyll blog}
 \usage{
 nhuyhoa()
 
-nhuyhoa_df_print(df, head = 5, data = TRUE, ...)
+nhuyhoa_df_print(df, head = 5, data = TRUE,
+  attribute = "class = \\"presenttab\\"", ...)
 }
 \description{
 Functions to use when running jekyll blog
 }
+\details{
+nhuyhoa() implements changes to the jekyll blog \cr
 
+nhuyhoa_df_print() formatting for tables on blog \cr
+}

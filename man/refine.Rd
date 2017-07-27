@@ -2,6 +2,7 @@
 % Please edit documentation in R/refine.R
 \name{refine}
 \alias{refine}
+\alias{refine}
 \alias{rm_na_list}
 \title{Refine}
 \usage{
@@ -29,4 +30,3 @@ refine(l, function(x) x \%>\% colnames \%>\% str_detect("mpg") \%>\% any)
 rm_na_list(l)
 
 }
-

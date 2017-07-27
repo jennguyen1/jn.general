@@ -24,4 +24,3 @@ x <- c("language1_r", "language2_python", "language3_java")
 # extract "r", "python", "java"
 str_scan(x, 2, "_")
 }
-

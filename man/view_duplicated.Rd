@@ -27,4 +27,3 @@ view_duplicated(d)
 \seealso{
 \code{\link{remove_duplicated}} to remove duplicates
 }
-

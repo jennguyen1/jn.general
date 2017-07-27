@@ -50,4 +50,3 @@ merge_mult(y1, y2, y3, by = list("id", c("id", "id2")))
 # equivalent to:
 merge(y1, y2, by = "id") \%>\% merge(y3, by = c("id", "id2"))
 }
-

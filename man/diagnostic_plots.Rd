@@ -15,4 +15,3 @@ a list of diagnostic plots
 \description{
 Generates the diagnostic plots in ggplot2, similar to the ones that are generated via the plot command. Currently available for lm and glm models
 }
-

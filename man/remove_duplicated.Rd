@@ -28,4 +28,3 @@ remove_duplicated(iris, Species, opt_delete = "from last")
 \seealso{
 \code{\link{view_duplicated}} to look at duplicates (but not remove)
 }
-
