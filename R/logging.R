@@ -30,6 +30,7 @@ start_logging <- function(name = paste('R', str_replace(Sys.time(), " ", "_") , 
   # write to file
   logfile <- file.path(getwd(), paste0(name, ".log"))
   getLogger()$addHandler(writeToFile, file = logfile, level = 'DEBUG')
+  if( file.exists(logfile) ) logwarn( paste("Writing over original", logfile) )
 
 }
 
