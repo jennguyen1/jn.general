@@ -43,18 +43,14 @@ import_lib <- function(lib_opts){
 
   if(lib_opts$data){
     # data wrangling
-    library(magrittr)
     library(stringr)
-    library(forcats)
-    library(reshape2)
-    library(tidyr)
-    library(plyr)
-    library(dplyr)
     library(tibble)
+    library(dplyr)
+    library(tidyr)
     library(purrr)
+    library(purrrlyr)
     library(data.table)
     library(dtplyr)
-
   }
 
   if(lib_opts$viz){
