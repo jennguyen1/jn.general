@@ -2,18 +2,15 @@ Package: jn.general
 Type: Package
 Title: Generic functions I use
 Version: 0.1
-Date: 2015-07-04
+Date: 2017-08-10
 Author: JN
 Maintainer: <jnnguyen2@wisc.edu>
 Description: Code base for functions I use a lot
 License: JN
 LazyData: TRUE
 Imports:
-    foreach,
-    magrittr,
-    stringr,
+    tidyverse,
     data.table,
-    ggplot2,
     grid,
     gtable,
     gridExtra
