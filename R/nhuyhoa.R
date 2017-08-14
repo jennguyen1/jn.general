@@ -16,7 +16,7 @@ NULL
 
 #' @rdname nhuyhoa
 #' @export
-nhuyhoa <- function(recipes = TRUE){
+nhuyhoa <- function(recipes = FALSE){
 
   # run recipes
   if(recipes) run_recipes("_source/data/Recipes.R")
