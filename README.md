@@ -1,9 +1,6 @@
 # jn.general
 
-## Installation
-`devtools::install_github("jnguyen92/jn.general")`
-
-## Functions include:
+This package contains a variety of general functions for working with data
 
 **Working with Lists**
 - **rename_list**: adds an identifier column to (nested) data frames inside a list with the names of the list elements
@@ -13,12 +10,12 @@
 - **view_duplicated**: displays duplicated rows by specified columns
 - **remove_duplicated**: removes duplicated rows by specified columns
 - **merge_mult**: merge multiple data frames using data.table merging
-- **to be or not to be**: returns the subset and anti-subset, supply own subsetting function or pre-existing functions (subset, filter, distinct, etc). Useful for splitting data sets and running analyses in parallel on both sets.
+- **to_be**: returns the subset and anti-subset, supply own subsetting function or pre-existing functions (subset, filter, distinct, etc). Useful for splitting data sets and running analyses in parallel on both sets.
 - **reorder_cols**: extension of `dplyr::select`. Reorders columns based on selection syntax provided by `dplyr::select` and also appends unselected columns. 
 
 **Misc Data Wrangling**
-- **shortcuts**: import libraries, wipe environment / blank slate, string concatenation shortcut
-- **refine**: wrapper for Filter. Applies a function (a function that returns a boolean) and returns the values which evaluate to TRUE
+- **shortcuts**: import libraries, wipe environment / blank slate
+- **refine**: wrapper for Filter. DEPRECATED use purrr::keep
 - **str_scan**: splits string by specified delimiter and obtains the ith result
 - **percentile_bin**: groups a vector by its percentiles
 
@@ -30,3 +27,6 @@
 **Random Data Generation**
 - **rdata**: generates a random data frame with options to specify a variety of column types
 - **rdata_helpers**: helper functions to generate random data
+
+## Installation
+`devtools::install_github("jnguyen92/jn.general")`
