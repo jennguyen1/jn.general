@@ -55,7 +55,7 @@ remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary 
     }
 
     # combined unique values (after duplicate deletion) with no_dups
-    out_data <- data.table::rbindlist( list(out_data, no_dups) )
+    out_data <- dplyr::bind_rows(out_data, no_dups)
   }
 
   # print summary of drops
