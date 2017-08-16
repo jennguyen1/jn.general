@@ -7,7 +7,7 @@
 \alias{run_recipes}
 \title{Functions for nhuyhoa jekyll blog}
 \usage{
-nhuyhoa(recipes = TRUE)
+nhuyhoa(recipes = FALSE)
 
 nhuyhoa_df_print(df, head = 5, data = TRUE,
   attribute = "class = \\"presenttab\\"", ...)
