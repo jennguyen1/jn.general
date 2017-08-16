@@ -11,7 +11,7 @@ extraction <- function(list_data, rbind, fill, recursive){
   # determine whether continue recursion: continue if the structure at each iteration is a list
   # note: cannot do !is.list(model) since a data frame is considered a list so it would cause incomplete results
   if( is.atomic(model) | is.matrix(model) | is.data.frame(model) | is.function(model) ){
-    if( rbind & is.data.frame(model) ) return( data.table::rbindlist(list_data, fill = fill) ) else return( list_data )
+    if( rbind & is.data.frame(model) ) return( dplyr::bind_rows(list_data) ) else return( list_data )
   }
 
   # since list_data is an iterative list, then the variable names of the first element is the same for all elements
