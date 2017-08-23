@@ -8,11 +8,7 @@
 #'
 #' install_jn() installs the jn.general package \cr
 #'
-#' lib() imports libraries depending on args: \cr
-#'  data: (data wrangling) magrittr, stringr, tidyverse, data.table, etc \cr
-#'  viz: (data visualization) ggplot2 and extensions \cr
-#'  model: (modeling) broom, lme4, glmnet, caret \cr
-#'  develop: (development) optparse, logging \cr
+#' lib() imports libraries, see scriptR::lib() \cr
 #'
 #' @name shortcuts
 NULL
