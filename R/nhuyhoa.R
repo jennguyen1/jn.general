@@ -54,10 +54,10 @@ run_recipes <- function(db){
     return(x)
   })
 
-  # find the picture(s) for the recipe
+  # find the picture(s) for the recipe and add to recipes list
   for(n in names(recipes)){
     pics <- list.files("figure/food/", pattern = stringr::str_replace(n, " \\(.*", ""))
-    recipes[[n]]$pics <- stringr::str_subset(pics, "JPG") # can i handle movies?
+    recipes[[n]]$pics <- stringr::str_subset(pics, "JPG")
   }
 
   # save recipes database into a file
@@ -67,19 +67,24 @@ run_recipes <- function(db){
   # generate recipe RMD files for website
   make_script <- function(i){
     dish <- names(recipes)[i]
+    recipe <- recipes[[i]]
 
-    # recipe pictures
-    pic <- recipes[[i]]$pics %>%
+    # recipe pictures - format for markdown/html
+    pic <- recipe$pics %>%
       paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>%
       paste(collapse = "\n\n")
-    pic <- ifelse(length(recipes[[i]]$pics) == 0, "", pic)
+    pic <- ifelse(length(recipe$pics) == 0, "", pic)
+
+    # recipe youtube - format for markdown/html
+    youtube <- ""
+    if(recipe$youtube != "") youtube <- paste0("[![youtube](http://img.youtube.com/vi/", recipe$youtube, "0.jpg)](http://www.youtube.com/watch?v=", recipe$youtube, ")")
 
     # RMD template
     script <- c("---
 layout: post
 title: \"", dish, "\"
 date: \"May 15, 2017\"
-categories: ['recipes', '", recipes[[i]]$meal, "']
+categories: ['recipes', '", recipe$meal, "']
 ---
 
 * TOC
@@ -93,6 +98,9 @@ current <- recipes[['", dish, "']]
 ```
 
 ", pic,"
+
+", youtube, "
+
 
 **Ingredients**
 
