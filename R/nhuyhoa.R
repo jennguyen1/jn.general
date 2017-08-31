@@ -71,13 +71,13 @@ run_recipes <- function(db){
 
     # recipe pictures - format for markdown/html
     pic <- recipe$pics %>%
-      paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>%
+      paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>% 
       paste(collapse = "\n\n")
     pic <- ifelse(length(recipe$pics) == 0, "", pic)
 
     # recipe youtube - format for markdown/html
     youtube <- ""
-    if(recipe$youtube != "") youtube <- paste0("[![youtube](http://img.youtube.com/vi/", recipe$youtube, "0.jpg)](http://www.youtube.com/watch?v=", recipe$youtube, ")")
+    if(recipe$youtube != "") youtube <- paste0("[![youtube](http://img.youtube.com/vi/", recipe$youtube, "/0.jpg)](http://www.youtube.com/watch?v=", recipe$youtube, ")")
 
     # RMD template
     script <- c("---
