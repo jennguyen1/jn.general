@@ -56,8 +56,8 @@ run_recipes <- function(db){
 
   # find the picture(s) for the recipe and add to recipes list
   for(n in names(recipes)){
-    pat <- stringr::str_replace(n, " \\(.*", "")
-    pics <- list.files("figure/food/", pattern = pat) %>% stringr::str_replace_all(" ", "_")
+    pat <- stringr::str_replace(n, " \\(.*", "") %>% stringr::str_replace_all(" ", "_")
+    pics <- list.files("figure/food/", pattern = pat) 
     recipes[[n]]$pics <- stringr::str_subset(pics, "JPG")
   }
 
