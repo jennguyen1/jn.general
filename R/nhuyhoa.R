@@ -72,7 +72,7 @@ run_recipes <- function(db){
 
     # recipe pictures - format for markdown/html
     pic <- recipe$pics %>%
-      paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>% 
+      paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>%
       paste(collapse = "\n\n")
     pic <- ifelse(length(recipe$pics) == 0, "", pic)
 
@@ -119,7 +119,7 @@ current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
 ") %>% paste(collapse = "")
 
     # save file
-    file_name <- paste0("_source/2017-05-15-", stringr::str_replace_all(dish, " ", "-"), ".Rmd")
+    file_name <- paste0("_source/2017-05-15-Recipe-", stringr::str_replace_all(dish, " ", "-"), ".Rmd")
     write(script, file = file_name)
     return(script)
   }
