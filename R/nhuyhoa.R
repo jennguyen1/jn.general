@@ -100,7 +100,7 @@ current <- recipes[['", dish, "']]
 ", youtube, "
 
 
-### Ingredients
+#### Ingredients
 
 ```{r, echo = FALSE}
 current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttab\\\"\")
@@ -108,7 +108,7 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 
 <br>
 
-### Instructions
+#### Instructions
 
 ```{r, echo = FALSE}
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
