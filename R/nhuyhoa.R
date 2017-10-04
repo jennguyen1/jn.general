@@ -57,7 +57,7 @@ run_recipes <- function(db){
   # find the picture(s) for the recipe and add to recipes list
   for(n in names(recipes)){
     pat <- stringr::str_replace(n, " \\(.*", "") %>% stringr::str_replace_all(" ", "_")
-    pics <- list.files("figure/food/", pattern = pat) 
+    pics <- list.files("figure/food/", pattern = pat)
     recipes[[n]]$pics <- stringr::str_subset(pics, "JPG")
   }
 
@@ -88,9 +88,6 @@ date: \"May 15, 2017\"
 categories: ['recipes', '", recipe$meal, "']
 ---
 
-* TOC
-{:toc}
-
 ```{r, echo = FALSE, warning = FALSE}
 library(jn.general)
 lib(data)
@@ -103,7 +100,7 @@ current <- recipes[['", dish, "']]
 ", youtube, "
 
 
-**Ingredients**
+### Ingredients
 
 ```{r, echo = FALSE}
 current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttab\\\"\")
@@ -111,7 +108,7 @@ current$display_ingredients %>% nhuyhoa_df_print(head = 100, data = FALSE, attri
 
 <br>
 
-**Instructions**
+### Instructions
 
 ```{r, echo = FALSE}
 current$instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = \"class = \\\"presenttabnoh\\\"\")
