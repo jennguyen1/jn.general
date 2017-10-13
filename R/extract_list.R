@@ -3,7 +3,7 @@
 #'
 #' Loops through an iterative list and rearranges data structures. Accumulates structures of the same
 #' name into a subsetted list which can be accessed using \code{$}. \cr
-#' See \code{\link{is.iterative.list}} to see what qualifies.
+#' See \code{\link{is_iterative_list}} to see what qualifies.
 #'
 #' @param list_data a list
 #' @param rbind logical; if TRUE rbinds/stacks all extracted elements into a data.table (if they are data frames);
@@ -83,7 +83,7 @@ extract_list <- function(list_data, rbind = TRUE, fill = TRUE, recursive = TRUE)
 
   # confirms that list is an iterative list;
   # recursive calls are guaranteed to be an iterative list so only need to run this once
-  if( !jn.general::is.iterative.list(list_data) ) stop("input list not an iterative list")
+  if( !jn.general::is_iterative_list(list_data) ) stop("input list not an iterative list")
 
   # runs main extraction function
   e <- extraction(list_data, rbind = rbind, fill = fill, recursive = recursive)

@@ -11,13 +11,6 @@ This package contains a variety of general functions for working with data
 - **remove_duplicated**: removes duplicated rows by specified columns
 - **merge_mult**: merge multiple data frames using data.table merging
 - **to_be**: returns the subset and anti-subset, supply own subsetting function or pre-existing functions (subset, filter, distinct, etc). Useful for splitting data sets and running analyses in parallel on both sets.
-- **reorder_cols**: extension of `dplyr::select`. Reorders columns based on selection syntax provided by `dplyr::select` and also appends unselected columns. 
-
-**Misc Data Wrangling**
-- **shortcuts**: import libraries, wipe environment / blank slate
-- **refine**: wrapper for Filter. DEPRECATED use purrr::keep
-- **str_scan**: splits string by specified delimiter and obtains the ith result
-- **percentile_bin**: groups a vector by its percentiles
 
 **Plots**
 - **anova_plot**: generates boxplots and summary tables into concise visualization for one-way ANOVA

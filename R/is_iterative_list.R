@@ -31,7 +31,7 @@
 #'
 #' # is it an iterative list? yes!
 #' ex1 <- lapply( 1:5, function(i) return(list(x = x(i), y = y(i))) )
-#' is.iterative.list(ex1)
+#' is_iterative_list(ex1)
 #'
 #' # is it an iterative list? yes!
 #' ex2 <- lapply( 1:5, function(i){
@@ -44,7 +44,7 @@
 #'  }
 #'  return( list(x = x, y = y) )
 #' })
-#' is.iterative.list(ex2)
+#' is_iterative_list(ex2)
 #'
 #' # is it an iterative list? no
 #' ex3 <- lapply( 1:5, function(i){
@@ -56,12 +56,12 @@
 #'    return(NULL)
 #'  }
 #' })
-#' is.iterative.list(ex3)
+#' is_iterative_list(ex3)
 #'
 #' # The idea is to return a named list at every iteration.
 #' # It is important it is named, even if it is completely NULL
 
-is.iterative.list <- function(l){
+is_iterative_list <- function(l){
 
   # is l a list?
   if( !is.list(l) | is.data.frame(l) ) stop("input list is not a list")
