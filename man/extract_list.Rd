@@ -22,7 +22,7 @@ a list
 \description{
 Loops through an iterative list and rearranges data structures. Accumulates structures of the same
 name into a subsetted list which can be accessed using \code{$}. \cr
-See \code{\link{is.iterative.list}} to see what qualifies.
+See \code{\link{is_iterative_list}} to see what qualifies.
 }
 \examples{
 # generate data
