@@ -63,7 +63,7 @@ run_recipes <- function(db){
 
   # save recipes database into a file
   save(recipes, file = "_source/data/recipes.Rdata")
-  save(recipes, file = "../recipe_finder/recipes.Rdata")
+  save(recipes, file = "../recipe_finder/data/recipes.Rdata")
 
   # generate recipe RMD files for website
   make_script <- function(i){
