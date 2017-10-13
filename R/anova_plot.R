@@ -37,7 +37,7 @@ anova_plot <- function(data, x, y){
     .[[1]] %>%
     as.data.frame %>%
     round(2) %>%
-    jn.general::table_plot(title = labels["y"] %p% " by " %p%  labels["x"], rownames = c(labels["x"], "Residuals"))
+    jn.general::table_plot(title = paste(labels["y"], "by",  labels["x"]), rownames = c(labels["x"], "Residuals"))
 
   # return results
   return( list(plot = p, anova = a) )
