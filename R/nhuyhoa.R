@@ -63,7 +63,7 @@ run_recipes <- function(db){
 
   # save recipes database into a file
   save(recipes, file = "_source/data/recipes.Rdata")
-  save(recipes, file = "~/Desktop/recipe_finder/recipes.Rdata")
+  save(recipes, file = "../recipe_finder/recipes.Rdata")
 
   # generate recipe RMD files for website
   make_script <- function(i){
@@ -72,7 +72,7 @@ run_recipes <- function(db){
 
     # recipe pictures - format for markdown/html
     pic <- recipe$pics %>%
-      paste0("![pic", 1:length(.), "](http://jnguyen92.github.io/nhuyhoa/figure/food/", ., ")") %>%
+      paste0("![pic", 1:length(.), ']( {{"/figure/food/', ., '" | absolute_url }})') %>%
       paste(collapse = "\n\n")
     pic <- ifelse(length(recipe$pics) == 0, "", pic)
 
