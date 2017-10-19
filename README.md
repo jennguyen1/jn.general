@@ -22,4 +22,4 @@ This package contains a variety of general functions for working with data
 - **rdata_helpers**: helper functions to generate random data
 
 ## Installation
-`devtools::install_github("jnguyen92/jn.general")`
+`devtools::install_github("jennguyen1/jn.general")`
