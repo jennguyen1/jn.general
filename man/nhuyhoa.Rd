@@ -12,7 +12,7 @@ nhuyhoa(recipes = FALSE)
 nhuyhoa_df_print(df, head = 5, data = TRUE,
   attribute = "class = \\"presenttab\\"", ...)
 
-run_recipes(db)
+run_recipes()
 }
 \description{
 Functions to use when running jekyll blog
