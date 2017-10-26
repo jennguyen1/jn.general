@@ -46,7 +46,7 @@ nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"p
 #' @export
 run_recipes <- function(){
 
-  connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = "../_data/recipes.db")
+  connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = "_data/recipes.db")
   recipes <- RSQLite::dbGetQuery(conn = connect, statement = "SELECT * FROM recipes")
   RSQLite::dbDisconnect(conn = connect)
 
@@ -90,7 +90,7 @@ categories: ['recipes', '", df$meal_type, "']
 library(jn.general)
 lib(data)
 
-connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '_data/recipes.db')
+connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
 ingredients <- RSQLite::dbGetQuery(conn = connect, statement = 'SELECT * FROM ingredients')
 instructions <- RSQLite::dbGetQuery(conn = connect, statement = 'SELECT * FROM instructions')
 RSQLite::dbDisconnect(conn = connect)
