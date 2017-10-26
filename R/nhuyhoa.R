@@ -100,6 +100,7 @@ display_ingredients <- ingredients %>%
   subset(recipe == recipe_name) %>%
   group_by(recipe, type) %>%
   mutate(n = 1:n()) %>%
+  ungroup() %>%
   spread(type, ingredients) %>%
   dplyr::select(other, meat, veggie, fruit) %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
