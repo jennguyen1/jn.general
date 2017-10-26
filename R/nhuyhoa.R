@@ -52,7 +52,7 @@ run_recipes <- function(){
 
   # extract recipe pics
   recipe_info <- recipes %>%
-    by_row(function(r){
+    purrrlyr::by_row(function(r){
       pat <- r$recipe %>%
         stringr::str_replace(" \\(.*", "") %>%
         stringr::str_replace_all(" ", "_")
