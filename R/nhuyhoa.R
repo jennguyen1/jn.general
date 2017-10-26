@@ -101,7 +101,10 @@ display_ingredients <- ingredients %>%
   group_by(recipe, type) %>%
   mutate(n = 1:n()) %>%
   ungroup() %>%
-  spread(type, ingredients) %>%
+  spread(type, ingredients)
+add_cols <- purrr::discard(c('other', 'meat', 'veggie', 'fruit'), ~ .x %in% colnames(display_ingredients))
+for(c in add_cols) display_ingredients[,c] <- NA
+display_ingredients <- display_ingredients %>%
   dplyr::select(other, meat, veggie, fruit) %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
 
