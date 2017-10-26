@@ -105,7 +105,8 @@ display_ingredients <- ingredients %>%
 add_cols <- purrr::discard(c('other', 'meat', 'veggie', 'fruit'), ~ .x %in% colnames(display_ingredients))
 for(c in add_cols) display_ingredients[,c] <- NA
 display_ingredients <- display_ingredients %>%
-  dplyr::select(other, meat, veggie, fruit) %>%
+  dplyr::select(other, meat, veggie, fruit) %>% 
+  dplyr::mutate_all(~ ifelse(is.na(.x), '', .x)) %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
 
 display_instructions <- instructions %>%
