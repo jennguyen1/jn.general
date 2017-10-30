@@ -57,7 +57,7 @@ run_recipes <- function(){
         stringr::str_replace(" \\(.*", "") %>%
         stringr::str_replace_all(" ", "_")
       pics <- list.files("figure/food/", pattern = pat)
-      stringr::str_subset(pics, str_interp("^${pat}.JPG"))
+      stringr::str_subset(pics, stringr::str_interp("^${pat}.JPG"))
     }, .to = "pictures")
 
 
