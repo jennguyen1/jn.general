@@ -83,7 +83,8 @@ run_recipes <- function(){
 layout: post
 title: \"", name, "\"
 date: \"May 15, 2017\"
-categories: ['recipes', '", df$meal_type, "']
+categories: Recipes
+tags: ", str_to_title(df$meal_type), "
 ---
 
 ```{r, echo = FALSE, warning = FALSE}
