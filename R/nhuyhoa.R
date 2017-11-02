@@ -84,7 +84,7 @@ layout: post
 title: \"", name, "\"
 date: \"May 15, 2017\"
 categories: Recipes
-tags: ", str_to_title(df$meal_type), "
+tags: ", stringr::str_to_title(df$meal_type), "
 ---
 
 ```{r, echo = FALSE, warning = FALSE}
@@ -138,7 +138,7 @@ display_instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
 
     # save file
     name_edit <- stringr::str_replace_all(name, " ", "-")
-    file_name <- stringr::str_interp("_source/2017-05-15-Recipe-${name_edit}.Rmd")
+    file_name <- stringr::str_interp("_source/2017-05-15-${name_edit}.Rmd")
     write(script, file = file_name)
     return(script)
   }
