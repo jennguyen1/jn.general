@@ -91,14 +91,15 @@ tags: ", stringr::str_to_title(df$meal_type), "
 library(jn.general)
 lib(data)
 
-connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
-ingredients <- RSQLite::dbGetQuery(conn = connect, statement = 'SELECT * FROM ingredients')
-instructions <- RSQLite::dbGetQuery(conn = connect, statement = 'SELECT * FROM instructions')
-RSQLite::dbDisconnect(conn = connect)
 recipe_name <- '", name, "'
+connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
+ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = \"${recipe_name}\"')
+instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = \"${recipe_name}\"')
+ingredients <- RSQLite::dbGetQuery(conn = connect, statement = ingredients_query)
+instructions <- RSQLite::dbGetQuery(conn = connect, statement = instructions_query)
+RSQLite::dbDisconnect(conn = connect)
 
 display_ingredients <- ingredients %>%
-  subset(recipe == recipe_name) %>%
   group_by(recipe, type) %>%
   mutate(n = 1:n()) %>%
   ungroup() %>%
@@ -111,7 +112,6 @@ display_ingredients <- display_ingredients %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
 
 display_instructions <- instructions %>%
-  subset(recipe == recipe_name) %>%
   arrange(idx) %>%
   dplyr::select(instructions)
 ```
