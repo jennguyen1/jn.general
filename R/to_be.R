@@ -29,12 +29,12 @@ to_be <- function(x, f, ...){
   )
 
   the_question <- x
-  args <- substitute(list(...))
-  if( length(args) == 1 ){
-    to_be <- f(the_question)
-  } else{
-    to_be <- f(the_question, ...)
-  }
+  to_be <- tryCatch({
+    f(the_question, ...)  
+  }, error = function(err){
+    message(err$message)
+    stop("The function could not be applied to the dataframe as specified")  
+  })
 
   # check in case drop = TRUE
   assertthat::assert_that(is.data.frame(to_be), msg = "The function did not return a data frame")
@@ -52,7 +52,6 @@ to_be <- function(x, f, ...){
     not_to_be <- head(the_question, 0) # function did not change anything, return empty df
   }
 
-  # return results
   return_list <- list(to_be = to_be, not_to_be = not_to_be)
   return(return_list)
 }

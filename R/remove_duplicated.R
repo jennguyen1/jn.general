@@ -5,13 +5,14 @@
 #'
 #' @param data a data frame
 #' @param ... columns to search for duplicated values; defaults to all arguments
-#' @param opt_delete string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate and deletes the rest, "from last" keeps the last duplicate and deletes the rest. Default is "from first".
+#' @param opt_delete string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate, "from last" keeps the last duplicate. Default is "from first".
 #' @param opt_summary boolean, whether to log drop summaries
 #'
 #' @return Returns a data table with duplicated rows given by columns removed
 #'
 #' @export
-#'
+#' 
+#' @import dplyr
 #' @seealso \code{\link{view_duplicated}} to look at duplicates (but not remove)
 #'
 #' @examples

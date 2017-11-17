@@ -8,8 +8,6 @@
 #'
 #' @return a data table with duplicated rows by given columns
 #'
-#' @import data.table
-#'
 #' @export
 #'
 #' @seealso \code{\link{remove_duplicated}} to remove duplicates
