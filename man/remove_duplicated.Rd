@@ -11,9 +11,9 @@ remove_duplicated(data, ..., opt_delete = "from first", opt_summary = TRUE)
 
 \item{...}{columns to search for duplicated values; defaults to all arguments}
 
-\item{opt_delete}{string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate and deletes the rest, "from last" keeps the last duplicate and deletes the rest. Default is "from first".}
+\item{opt_delete}{string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate, "from last" keeps the last duplicate. Default is "from first".}
 
-\item{opt_summary}{boolean, whether to print drop summaries}
+\item{opt_summary}{boolean, whether to log drop summaries}
 }
 \value{
 Returns a data table with duplicated rows given by columns removed
@@ -22,8 +22,9 @@ Returns a data table with duplicated rows given by columns removed
 Removes duplicated data by given columns
 }
 \examples{
-remove_duplicated(iris, Species, opt_delete = "from last")
-
+d <- data.frame(x = rep(1:3, each=4), y = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))
+view_duplicated(d, y, z)
+remove_duplicated(d, y, z)
 }
 \seealso{
 \code{\link{view_duplicated}} to look at duplicates (but not remove)
