@@ -39,7 +39,7 @@ remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary 
     group_vars <- as.character(substitute(list(...))[-1])
     
     if(length(group_vars) == 0){
-      fix_dups <- dplyr::distinct(dups) 
+      fix_dups <- subset(dups, !duplicated(dups))
     } else{
       filter_f <- switch(
         opt_delete,
@@ -52,10 +52,10 @@ remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary 
         tidyr::unnest()
     }
 
-    out_data <- dplyr::bind_rows(fix_dups, no_dups)
+    out_data <- rbind(fix_dups, no_dups)
   }
-  out_data <- dplyr::select(out_data, dplyr::one_of(colnames(data)))
-  
+  out_data <- subset(out_data, select = colnames(data))
+
   if(opt_summary){
     n_dups <- nrow(dups)
     left_over <- nrow(data) - nrow(out_data)
