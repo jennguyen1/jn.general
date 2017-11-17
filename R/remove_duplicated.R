@@ -6,7 +6,7 @@
 #' @param data a data frame
 #' @param ... columns to search for duplicated values; defaults to all arguments
 #' @param opt_delete string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate and deletes the rest, "from last" keeps the last duplicate and deletes the rest. Default is "from first".
-#' @param opt_summary boolean, whether to print drop summaries
+#' @param opt_summary boolean, whether to log drop summaries
 #'
 #' @return Returns a data table with duplicated rows given by columns removed
 #'
@@ -15,61 +15,51 @@
 #' @seealso \code{\link{view_duplicated}} to look at duplicates (but not remove)
 #'
 #' @examples
-#' remove_duplicated(iris, Species, opt_delete = "from last")
-#'
+#' d <- data.frame(x = rep(1:3, each=4), y = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))
+#' view_duplicated(d, y, z)
+#' remove_duplicated(d, y, z)
 
 remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary = TRUE){
-
-  # split data up into duplicates and non-duplicates
-  split_data <- jn.general::to_be(data, jn.general::view_duplicated, ...)
-
-  # save duplicates and non-duplicates
+  assertthat::assert_that(!missing("data"), msg = "Missing data argument")
+  assertthat::assert_that(opt_delete %in% c("all", "from first", "from last"), msg = "Invalid delete option")
+  assertthat::assert_that(
+    is.data.frame(data),
+    is.logical(opt_summary)
+  )
+  
+  split_data <- to_be(data, view_duplicated, ...)
   dups <- split_data$to_be
   no_dups <- split_data$not_to_be
 
-  # remove duplicates (all duplicates)
   if(opt_delete == "all"){
-    out_data <- data.table(no_dups)
+    out_data <- no_dups
 
-  # remove duplicates with options
   } else {
-    # convert data to data table if it is not already
-    if( !data.table::is.data.table(dups) ) dups <- data.table::data.table(dups)
-
-    # set the key to use for duplicates
-    keys <- as.character(substitute(list(...))[-1])
-    if( any(!(keys %in% colnames(dups))) ) stop("Columns specified not in input data")
-    suppressWarnings( data.table::setkeyv(dups, keys) )
-
-    # delete duplicates from last (keep the last duplicated value and delete the rest)
-    if(opt_delete == "from last"){
-      out_data <- subset(dups, !duplicated(dups, fromLast = TRUE))
-
-    # delete duplicates from first (keep the first duplicated value and delete the rest)
-    } else if (opt_delete == "from first") {
-      out_data <- subset(dups, !duplicated(dups))
-
-    # error when any other delete option given
+    group_vars <- as.character(substitute(list(...))[-1])
+    
+    if(length(group_vars) == 0){
+      fix_dups <- dplyr::distinct(dups) 
     } else{
-      stop("Invalid delete option")
+      filter_f <- switch(
+        opt_delete,
+        "from first" = head,
+        "from last" = tail
+      )
+      fix_dups <- dups %>% 
+        dplyr::group_by_at(group_vars) %>% 
+        purrrlyr::by_slice(~ filter_f(.x, 1)) %>% 
+        tidyr::unnest()
     }
 
-    # combined unique values (after duplicate deletion) with no_dups
-    out_data <- dplyr::bind_rows(out_data, no_dups)
+    out_data <- dplyr::bind_rows(fix_dups, no_dups)
   }
-
-  # print summary of drops
+  out_data <- dplyr::select(out_data, dplyr::one_of(colnames(data)))
+  
   if(opt_summary){
-    # find sample sizes
     n_dups <- nrow(dups)
     left_over <- nrow(data) - nrow(out_data)
-
-    # print summary of drops
-    print( paste0(n_dups, " duplicates were found") )
-    print( paste0(left_over, " duplicates were dropped") )
+    logging::loginfo( paste(n_dups, "duplicates were found") )
+    logging::loginfo( paste(left_over, "duplicates were dropped") )
   }
-
-  # return final data
   return(out_data)
-
 }

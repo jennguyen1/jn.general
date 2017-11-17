@@ -22,32 +22,16 @@
 #'
 
 view_duplicated <- function(data, ...){
+  assertthat::assert_that(!missing("data"), msg = "Missing data argument")
+  assertthat::assert_that(is.data.frame(data))
 
-  ##################
-  # Error Checking #
-  ##################
-
-  # throw errors if there are missing data
-  if( missing(data) ) stop("Missing data argument")
-
-  # check types
-  if( !is.data.frame(data) ) stop("input data is not a data frame")
-
-  #################
-  # Function Work #
-  #################
-
-  # convert data to data table if it is not already
-  if( !data.table::is.data.table(data) ) data <- data.table::data.table(data)
-
-  # set the key to use for duplicates
+  if(nrow(data) == 0) return(data)
+  
   keys <- as.character(substitute(list(...))[-1])
-  if( any(!(keys %in% colnames(data))) ) stop("Columns specified not in input data")
-  suppressWarnings( data.table::setkeyv(data, keys) )
-
-  # find duplicates
-  d <- subset(data, duplicated(data) | duplicated(data, fromLast = TRUE))
-
-  # return results
-  return(d)
+  assertthat::assert_that(all(keys %in% colnames(data)), msg = "Columns specified not in input data")
+  if(length(keys) == 0) keys <- colnames(data)
+  
+  d <- subset(data, select = keys)
+  dups <- unique(subset(d, duplicated(d)))
+  dplyr::semi_join(data, dups, by = keys)
 }
