@@ -6,7 +6,7 @@
 #' @param data a data frame
 #' @param ... columns to search for duplicated values; defaults to all arguments
 #'
-#' @return a data table with duplicated rows by given columns
+#' @return a data frame with duplicated rows by given columns
 #'
 #' @export
 #'
