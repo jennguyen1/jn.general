@@ -32,8 +32,6 @@ lm_plot <- function(mod){
     ylab("Standardized Residuals") +
     ggtitle("QQ-Normal")
 
-
-
   # Scale Location
   scale_location <- ggplot(mod, aes(.fitted, sqrt(abs(.stdresid)))) +
     geom_point(alpha = 0.8, na.rm=TRUE) +
@@ -41,14 +39,11 @@ lm_plot <- function(mod){
     xlab("Fitted Value") + ylab(expression(sqrt("|Standardized residuals|"))) +
     ggtitle("Scale-Location")
 
-
-
   # Cooks Distance
   cooks_dist <- ggplot(mod, aes(seq_along(.cooksd), .cooksd)) +
     geom_bar(stat="identity", position="identity") +
     xlab("Obs. Number") + ylab("Cook's distance") +
     ggtitle("Cook's distance")
-
 
   # Influence plot
   influence_plot <- ggplot(mod, aes(x = .hat, y = .stdresid, size = .cooksd, color = .cooksd)) +
@@ -62,8 +57,6 @@ lm_plot <- function(mod){
     geom_hline(yintercept = 0, col = "black", linetype = "dashed") +
     geom_vline(xintercept = 3*mean(influence(mod)$hat), col = "black", linetype = "dashed") +
     theme(legend.position = "bottom")
-
-
 
   # output
   out <- list(
@@ -88,44 +81,37 @@ glm_plot <- function(mod){
     xlab(expression(hat(eta))) + ylab("Deviance Residuals") +
     ggtitle("Residuals vs. Fitted")
 
-
-
     # Half Normal Plot
     d <- broom::augment(mod)
     # standardized residuals
-    d <- d %>%
-      dplyr::mutate(
-        x = sort(abs(.std.resid)),
-        ui = qnorm( (length(x) + 1:length(x))/(2 * length(x) + 1) )
-      )
+    d <- dplyr::mutate(d,
+      x = sort(abs(.std.resid)),
+      ui = qnorm( (length(x) + 1:length(x))/(2 * length(x) + 1) )
+    )
     halfnorm.resid <- ggplot(data = d, aes(x = ui, y = x)) +
       geom_point() +
       xlab("Half-Normal Quantiles") + ylab("Sorted Data") +
       ggtitle("Half-Normal Plot for Studentized Residuals")
 
     # leverages
-    d <- d %>%
-      dplyr::mutate(
-        x = sort(abs(.hat)),
-        ui = qnorm( (length(x) + 1:length(x))/(2 * length(x) + 1) )
-      )
+    d <- dplyr::mutate(d,
+      x = sort(abs(.hat)),
+      ui = qnorm( (length(x) + 1:length(x))/(2 * length(x) + 1) )
+    )
     halfnorm.lev <- ggplot(data = d, aes(x = ui, y = x)) +
       geom_point() +
       xlab("Half-Normal Quantiles") + ylab("Sorted Data") +
       ggtitle("Half-Normal Plot for Leverages")
 
     # cooks distance
-    d <- d %>%
-      dplyr::mutate(
-        x = sort(abs(.cooksd)),
-        ui = qnorm( (length(x) + 1:length(x))/(2 * length(x) + 1) )
-      )
+    d <- dplyr::mutate(d,
+      x = sort(abs(.cooksd)),
+      ui = qnorm( (length(x) + 1:length(x))/(2 * length(x) + 1) )
+    )
     halfnorm.cd <- ggplot(data = d, aes(x = ui, y = x)) +
       geom_point() +
       xlab("Half-Normal Quantiles") + ylab("Sorted Data") +
       ggtitle("Half-Normal Plot for Cooks Distances")
-
-
 
     # output
     out <- list(

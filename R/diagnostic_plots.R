@@ -1,4 +1,3 @@
-# TODO: identify points (put on plot)
 
 #' Diagnostic Plots for lm and glm
 #'
@@ -10,12 +9,9 @@
 #' @export
 
 diagnostic_plots <- function(mod){
-
-  # glm diagnostic plot
+  asserthat::assert_that( any(class(mod) %in% c("lm", "glm")), msg = "Invalid mod argument")
   if( any(class(mod) %in% "glm") ) {
     return( glm_plot(mod) )
-
-  # lm diagnostic plot
   } else if( class(mod) %in% "lm" ) {
     return( lm_plot(mod) )
   }
