@@ -17,11 +17,7 @@ NULL
 #' @rdname nhuyhoa
 #' @export
 nhuyhoa <- function(recipes = FALSE){
-
-  # run recipes
   if(recipes) run_recipes()
-
-  # jekyll blog
   servr::jekyll(dir = ".", input = c(".", "_source", "_posts"),
                 output = c(".", "_posts", "_posts"), script = c("build.R"),
                 serve = TRUE, command = "jekyll build")
@@ -31,12 +27,9 @@ nhuyhoa <- function(recipes = FALSE){
 #' @rdname nhuyhoa
 #' @export
 nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"presenttab\"", ...){
-  # for printing data
-  if(data){
+  if(data){ # printing data
     df %>% head(head) %>% knitr::kable(format = "html", align = "c", ...)
-
-  # for presentating tables
-  } else{
+  } else{ # presenting tables
     df %>% head(head) %>% knitr::kable(format = "html", table.attr = attribute, ...)
   }
 }
@@ -78,7 +71,6 @@ run_recipes <- function(){
     use_video <- ""
     if( !is.na(youtube) ) use_video <- paste0("[![youtube](http://img.youtube.com/vi/", youtube, "/0.jpg)](http://www.youtube.com/watch?v=", youtube, ")")
 
-    # RMD template
     script <- c("---
 layout: post
 title: \"", name, "\"
@@ -136,7 +128,6 @@ display_instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
 ```
 ") %>% paste(collapse = "")
 
-    # save file
     name_edit <- stringr::str_replace_all(name, " ", "-")
     file_name <- stringr::str_interp("_source/2017-05-15-${name_edit}.Rmd")
     write(script, file = file_name)
@@ -144,6 +135,5 @@ display_instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
   }
 
 
-  # make RMD script for each recipe
   purrrlyr::by_row(recipe_info, make_script)
 }

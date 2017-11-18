@@ -9,9 +9,9 @@ to_be(x, f, ...)
 \arguments{
 \item{x}{an object to be subsetted}
 
-\item{f}{a subsetting function (subset, dplyr::slice, dplyr::filter, dplyr::select, etc)}
+\item{f}{a subsetting function (subset, dplyr::slice, dplyr::filter, dplyr::select, etc) that applies to only one dimension of the data frame}
 
-\item{...}{additional arguments to subsetting function f; see details}
+\item{...}{additional arguments to subsetting function f}
 }
 \value{
 list \cr
@@ -19,30 +19,13 @@ Element "to_be" contains the subsetted object \cr
 Element "not_to_be" contains the opposite of the subsetted object (anti-subset) \cr
 }
 \description{
-Returns the subset and the opposite of the subset (anti-subset) of data frames
-}
-\details{
-Any type of arguments normally passed to the subsetting function given. If both subset and
-select arguments are given the not_to_be object is a data frame of the same size as x, but
-values that were extracted are converted to NA.
+Returns the subset and the opposite of the subset (anti-subset) of data frames.
 }
 \examples{
 to_be(mtcars, dplyr::slice, 1:5)
 to_be(mtcars, subset, cyl != 4)
 to_be(mtcars, dplyr::filter, cyl != 4, mpg > 20)
 to_be(mtcars, dplyr::select, -one_of(c("gear", "vs")))
-to_be(mtcars, subset, subset = mpg > 20, select = c(cyl, hp, wt))
 to_be(iris, view_duplicated)
-
-# outputs data that contains no na's (complete cases) and data that contains na's
-x <- rdata(50, gen_char(values = c("A", "B"), name = "grp"), gen_num(5, 1:7, add.na = TRUE))
-y <- to_be(x, dplyr::filter, is.na(X_1)) \%>\% lapply(data.table::data.table)
-
-# replace all na's in X_1 with the mean of X1 by group and combine back
-replace_values <- y[["not_to_be"]] \%>\% .[, list(X_1 = mean(X_1)), by = "grp"]
-replace_na <- y[["to_be"]] \%>\% dplyr::select(-X_1) \%>\% merge(replace_values, by = "grp")
-
-# combine back with original data
-newx <- rbind(replace_na, y[["not_to_be"]])
 
 }

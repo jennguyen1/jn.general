@@ -15,7 +15,8 @@ rename_list(list, names = NULL)
 a list
 }
 \description{
-Loops through the elements of a list and adds a file id column corresponding to the provided names.
+Loops through the elements of a list and adds a id column to data.frames 
+corresponding to the provided names.
 }
 \examples{
 
@@ -33,7 +34,7 @@ rename_list(list = files, names = paths)
 #############
 # Example 2 #
 #############
-# This example is similar to ea_extract, but note that we don't have to provide model descriptions up front
+# This example is similar to extract_list, but note that we don't have to provide model descriptions up front
 
 # generate data: think of these functions as va functions
 library(plyr)
