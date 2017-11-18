@@ -4,49 +4,32 @@
 \alias{merge_mult}
 \title{Merge Multiple Data Frames}
 \usage{
-merge_mult(..., by, all = FALSE, all.x = NULL, suffixes = letters)
+merge_mult(..., f, by, suffixes)
 }
 \arguments{
 \item{...}{data frames to be merged or one list of all data frames to be merged}
 
+\item{f}{merge function, valid options are dplyr::inner_join, dplyr::left_join, dplyr::right_join, dplyr::full_join, dplyr::semi_join, dplyr::anti_join, base::merge (default options)}
+
 \item{by}{vector of shared column names to merge on or list of vectors where each element of list refers to the by value for the ith merge}
-
-\item{all}{logical; if FALSE, then an inner join on all data frames; else a full outer join on all data frames.}
-
-\item{all.x}{logical; if TRUE, then a left outer join on the first data frame listed}
 
 \item{suffixes}{vector specifying suffixes to be used for making unique the names of columns in the result which are not used for merging}
 }
 \value{
-A data table
+A data frame
 }
 \description{
-Fast merge multiple data frames, via data.table merge method
+Merge Multiple Data Frames
 }
 \examples{
-# generate random data
-x1 <- rdata(n = 28, gen_random())
-x2 <- rdata(n = 11, gen_random())
-x3 <- rdata(n = 54, gen_random(2))
-x4 <- rdata(n = 9, gen_random())
-
-# merge by "id"
-merge_mult(x1, x2, x3, x4, by = "id")
-# equivalent to:
-merge(x1, x2, by = "id") \%>\% merge(x3, by = "id") \%>\% merge(x4, by = "id")
-
-# merge by "id", keep all of the 1st df
-merge_mult(x1, x2, x3, x4, by = "id", all.x = TRUE)
-# equivalent to:
-merge(x1, x2, by = "id", all.x = TRUE) \%>\% merge(x3, by = "id", all.x = TRUE) \%>\% merge(x4, by = "id", all.x = TRUE)
-
 # generate more random data
 y1 <- data.frame(id = rep(1:5, 3), val = rnorm(15))
 y2 <- data.frame(id = 1:15, id2 = rep(c("A", "B", "C"), 5), est = rnorm(15))
 y3 <- data.frame(id = 1:15, id2 = rep(c("A", "B", "C"), 5), var = runif(15))
 
 # merge by various attributes
-merge_mult(y1, y2, y3, by = list("id", c("id", "id2")))
+merge_mult(y1, y2, y3, f = dplyr::inner_join, by = list("id", c("id", "id2")), suffixes = letters[1:3])
 # equivalent to:
 merge(y1, y2, by = "id") \%>\% merge(y3, by = c("id", "id2"))
+
 }
