@@ -1,18 +1,22 @@
 Package: jn.general
 Type: Package
 Title: Generic functions I use
-Version: 0.1
-Date: 2017-08-10
+Version: 1.0
+Date: 2017-11-17
 Author: JN
 Maintainer: <jnnguyen2@wisc.edu>
 Description: Code base for functions I use a lot
 License: JN
 LazyData: TRUE
 Imports:
+    assertthat, 
     tidyverse,
-    data.table,
-    grid,
-    gtable,
-    gridExtra
+    stringr,
+    purrrlyr,
+    devtools,
+    logging
+Suggests: 
+    testthat,
+    knitr,
+    servr
 RoxygenNote: 6.0.1
-Suggests: testthat

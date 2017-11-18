@@ -16,7 +16,7 @@ remove_duplicated(data, ..., opt_delete = "from first", opt_summary = TRUE)
 \item{opt_summary}{boolean, whether to log drop summaries}
 }
 \value{
-Returns a data table with duplicated rows given by columns removed
+Returns a data frame with duplicated rows given by columns removed
 }
 \description{
 Removes duplicated data by given columns

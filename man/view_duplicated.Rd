@@ -12,7 +12,7 @@ view_duplicated(data, ...)
 \item{...}{columns to search for duplicated values; defaults to all arguments}
 }
 \value{
-a data table with duplicated rows by given columns
+a data frame with duplicated rows by given columns
 }
 \description{
 Finds all duplicated rows by given columns. Equivalent to doing data[duplicated(data) | duplicated(data, fromLast = TRUE), ]

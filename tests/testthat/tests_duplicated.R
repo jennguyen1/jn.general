@@ -87,7 +87,6 @@ test_that("remove_duplicated when there all duplicates", {
 
 test_that("remove_duplicated check parameter types", {
   expect_error(remove_duplicated())
-  expect_error(remove_duplicated())
   expect_error(remove_duplicated(1:10))
   expect_error(remove_duplicated(list()))
   expect_error(remove_duplicated(dups, opt_delete = "something"))
