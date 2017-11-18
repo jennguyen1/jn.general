@@ -7,7 +7,7 @@
 diagnostic_plots(mod)
 }
 \arguments{
-\item{mod}{a lm model}
+\item{mod}{a lm or glm model obj}
 }
 \value{
 a list of diagnostic plots

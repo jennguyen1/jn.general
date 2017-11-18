@@ -3,7 +3,7 @@
 #'
 #' Generates the diagnostic plots in ggplot2, similar to the ones that are generated via the plot command. Currently available for lm and glm models
 #'
-#' @param mod a lm model
+#' @param mod a lm or glm model obj
 #'
 #' @return a list of diagnostic plots
 #' @export
