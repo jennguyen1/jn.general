@@ -4,18 +4,18 @@
 \alias{rename_list}
 \title{Rename Data Nested within a List}
 \usage{
-rename_list(list, names = NULL)
+rename_list(my_list, names = NULL)
 }
 \arguments{
-\item{list}{a list; list elements may or may not have names}
+\item{my_list}{a list; list elements may or may not have names}
 
-\item{names}{the names for the outer loop of the list if not already specified in the list names}
+\item{names}{character vector; the names of the elements of the list, if the list is unnamed}
 }
 \value{
 a list
 }
 \description{
-Loops through the elements of a list and adds a id column to data.frames 
+Loops through the elements of a list and adds a name_id column to data.frames 
 corresponding to the provided names.
 }
 \examples{
@@ -23,52 +23,16 @@ corresponding to the provided names.
 #############
 # Example 1 #
 #############
-# load up a directory of files
 paths <- list.files(directory)
 files <- lapply(paths, fread)
-
-# put file names into the individual files
 rename_list(list = files, names = paths)
-
 
 #############
 # Example 2 #
 #############
-# This example is similar to extract_list, but note that we don't have to provide model descriptions up front
+l <- purrr::rerun(5, x = list(a = head(mtcars), b = head(iris), c = list(o = 1, p = list(q = head(airquality), u = 1:10))), y = head(mtcars))
+rename_list(l, names = paste0("id", 1:5))
 
-# generate data: think of these functions as va functions
-library(plyr)
-regression <- function(){
-  x1 <- matrix(1:100, nrow = 50)
-  x2 <- data.frame(a = runif(14), b = rnorm(14))
-  x3 <- data.frame(rdply(56, sample(rnorm(50), 2)))
-  x4 <- list(a = data.frame(rdply(20, rnorm(3))),
-  		b = data.frame(rdply(5, runif(5))))
-  return(list(va_ests_out = x2, va_coeffs_out = x2, va_studresids_out = x3, va_varcov_out = x4))
-}
-
-within_r2 <- function(){
-	x = data.frame(resid_var = rnorm(1), within_r2 = sample(1:10, 1))
-	return(x)
-}
-
----------------------------------------------------------------------
-
-# run analysis on different models - will not have model descriptions
-output <- lapply(1:5, function(i){
-	rg <- regression()
-	r2 <- within_r2()
-	if(i\%\%2==0) test_null <- NULL else test_null <- c(1,2,3)
-	return( list(regression = rg, r2 = r2, test_null = test_null) )
-})
-
-# rename the outer elements of output list
-names(output) <- paste0("model_", 1:5)
-
-# rename the nested elements of list (all the nested data structures)
-named_output <- rename_list(output)
-
-# extract data - now has model descriptions
-extract <- extract_list(named_output)
-
+names(l) <- paste0("id", 1:5)
+rename_list(l)
 }

@@ -1,21 +1,19 @@
-# TODO: identify points (put on plot)
 
 #' Diagnostic Plots for lm and glm
 #'
 #' Generates the diagnostic plots in ggplot2, similar to the ones that are generated via the plot command. Currently available for lm and glm models
 #'
-#' @param mod a lm model
+#' @param mod a lm or glm model obj
 #'
 #' @return a list of diagnostic plots
+#' 
+#' @import ggplot2
 #' @export
 
 diagnostic_plots <- function(mod){
-
-  # glm diagnostic plot
+  assertthat::assert_that( any(class(mod) %in% c("lm", "glm")), msg = "Invalid mod argument")
   if( any(class(mod) %in% "glm") ) {
     return( glm_plot(mod) )
-
-  # lm diagnostic plot
   } else if( class(mod) %in% "lm" ) {
     return( lm_plot(mod) )
   }

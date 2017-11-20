@@ -17,6 +17,7 @@ NULL
 #' @rdname nhuyhoa
 #' @export
 nhuyhoa <- function(recipes = FALSE){
+  assertthat::assert_that(basename(getwd()) == "nhuyhoa", msg = "Invalid working directory")
   if(recipes) run_recipes()
   servr::jekyll(dir = ".", input = c(".", "_source", "_posts"),
                 output = c(".", "_posts", "_posts"), script = c("build.R"),
