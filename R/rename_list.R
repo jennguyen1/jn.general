@@ -13,16 +13,12 @@
 #'
 #' @examples
 #'
-#' #############
-#' # Example 1 #
-#' #############
+#' # example 1
 #' paths <- list.files(directory)
 #' files <- lapply(paths, fread)
 #' rename_list(list = files, names = paths)
 #'
-#' #############
-#' # Example 2 #
-#' #############
+#' # example 2
 #' l <- purrr::rerun(5, x = list(a = head(mtcars), b = head(iris), c = list(o = 1, p = list(q = head(airquality), u = 1:10))), y = head(mtcars))
 #' rename_list(l, names = paste0("id", 1:5))
 #' 
@@ -47,6 +43,5 @@ rename_list <- function(my_list, names = NULL){
   )
   names(my_list) <- names
   
-  new_l <- Map(function(l, n) aux_rename_list(l, n), my_list, names)
-  return(new_l)
+  Map(function(l, n) aux_rename_list(l, n), my_list, names)
 }

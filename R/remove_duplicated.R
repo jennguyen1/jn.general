@@ -62,5 +62,5 @@ remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary 
     logging::loginfo( paste(n_dups, "duplicates were found") )
     logging::loginfo( paste(left_over, "duplicates were dropped") )
   }
-  return(out_data)
+  out_data
 }
