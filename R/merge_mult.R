@@ -82,5 +82,6 @@ merge_mult <- function(..., f, by, suffixes){
       merged <- if(f_is_no_suffix_merge) f(merged, l[[i]], by = by[[i - 1]]) else f(merged, l[[i]], by = by[[i - 1]], suffix = use_suffixes)
     }
   }
+  
   merged
 }

@@ -39,7 +39,6 @@ nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"p
 #' @rdname nhuyhoa
 #' @export
 run_recipes <- function(){
-
   connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = "_data/recipes.db")
   recipes <- RSQLite::dbGetQuery(conn = connect, statement = "SELECT * FROM recipes")
   RSQLite::dbDisconnect(conn = connect)

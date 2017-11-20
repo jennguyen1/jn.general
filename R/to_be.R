@@ -34,6 +34,7 @@ to_be <- function(x, f, ...){
     message(err$message)
     stop("The function could not be applied to the dataframe as specified")  
   })
+  
   # check in case drop = TRUE
   assertthat::assert_that(is.data.frame(to_be), msg = "The function did not return a data frame")
 

@@ -1,7 +1,6 @@
 
 # internal diagnostic plots for lm
 lm_plot <- function(mod){
-
   # Residuals vs Fitted Plot
   resids_v_fitted <- ggplot(mod, aes(.fitted, .resid)) +
     geom_point(alpha = 0.8) +
@@ -72,7 +71,6 @@ lm_plot <- function(mod){
 
 # internal diagnostic plots for glm
 glm_plot <- function(mod){
-
   # Residuals vs Fitted Plot
   resids_v_fitted <- ggplot(mod, aes(.fitted, .resid)) +
     geom_point(alpha = 0.8) +
