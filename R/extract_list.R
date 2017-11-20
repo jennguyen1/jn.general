@@ -8,12 +8,10 @@
 #' @param list_data a list
 #' @param rbind logical; if TRUE rbinds/stacks all extracted elements into a data.table (if they are data frames);
 #' else they are returned as lists. Elements that are not data frames are returned as lists
-#' @param fill logical; only used if rbind = TRUE; if TRUE fills missing columns with NA
 #' @param recursive logical; if TRUE extraction applied to list components of x
 #'
 #' @return a list
 #'
-#' @import magrittr
 #' @export
 #'
 #' @examples
@@ -79,15 +77,13 @@
 #' # it will only take non-null values!
 #' test_null <- extract$test_null
 #'
-extract_list <- function(list_data, rbind = TRUE, fill = TRUE, recursive = TRUE){
+extract_list <- function(list_data, rbind = TRUE, recursive = TRUE){
 
   # confirms that list is an iterative list;
   # recursive calls are guaranteed to be an iterative list so only need to run this once
-  if( !jn.general::is_iterative_list(list_data) ) stop("input list not an iterative list")
+  # assertthat::assert_that(jn.general::is_iterative_list(list_data), msg = "Input list is not an iterative list")
 
   # runs main extraction function
-  e <- extraction(list_data, rbind = rbind, fill = fill, recursive = recursive)
-
-  # runs output
+  e <- extraction(list_data, rbind = rbind, recursive = recursive)
   return(e)
 }
