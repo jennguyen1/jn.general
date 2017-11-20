@@ -1,4 +1,4 @@
-context("Misc Functions")
+context("Diagnostic Plots")
 
 library(dplyr)
 library(survival)
