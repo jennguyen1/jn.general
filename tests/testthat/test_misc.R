@@ -17,7 +17,7 @@ test_that("diagnostic_plots parameter checks", {
   expect_true(is.list(p3))
   expect_true(length(p3) == 6)
   
-  mod4 <- lm(am ~ mpg + gear + cyl, data = mtcars)
+  mod4 <- glm(am ~ mpg + gear + cyl, data = mtcars)
   p4 <- diagnostic_plots(mod4)
   expect_true(is.list(p4))
   expect_true(length(p4) == 4)

@@ -6,10 +6,12 @@
 #' @param mod a lm or glm model obj
 #'
 #' @return a list of diagnostic plots
+#' 
+#' @import ggplot2
 #' @export
 
 diagnostic_plots <- function(mod){
-  asserthat::assert_that( any(class(mod) %in% c("lm", "glm")), msg = "Invalid mod argument")
+  assertthat::assert_that( any(class(mod) %in% c("lm", "glm")), msg = "Invalid mod argument")
   if( any(class(mod) %in% "glm") ) {
     return( glm_plot(mod) )
   } else if( class(mod) %in% "lm" ) {
