@@ -10,10 +10,13 @@ License: JN
 LazyData: TRUE
 Imports:
     assertthat, 
-    tidyverse,
+    dplyr,
+    tidyr,
+    purrr,
     stringr,
     purrrlyr,
     devtools,
+    broom,
     logging
 Suggests: 
     testthat,
