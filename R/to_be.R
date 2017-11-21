@@ -22,7 +22,6 @@
 #'
 
 to_be <- function(x, f, ...){
-
   assertthat::assert_that(
     is.data.frame(x),
     is.function(f)
@@ -35,24 +34,20 @@ to_be <- function(x, f, ...){
     message(err$message)
     stop("The function could not be applied to the dataframe as specified")  
   })
-
+  
   # check in case drop = TRUE
   assertthat::assert_that(is.data.frame(to_be), msg = "The function did not return a data frame")
 
   if( (nrow(the_question) != nrow(to_be)) & (ncol(the_question) != ncol(to_be)) ){
     assertthat::assert_that(TRUE, msg = "The function should only apply one one dimension of the data frame")
-
   } else if( nrow(the_question) != nrow(to_be) ){
     not_to_be <- dplyr::anti_join(the_question,to_be, by = colnames(the_question))
-
   } else if( ncol(the_question) != ncol(to_be) ){
     not_to_be <- dplyr::select(the_question, -dplyr::one_of(colnames(to_be)))
-
   } else{
     not_to_be <- head(the_question, 0) # function did not change anything, return empty df
   }
 
-  return_list <- list(to_be = to_be, not_to_be = not_to_be)
-  return(return_list)
+  list(to_be = to_be, not_to_be = not_to_be)
 }
 

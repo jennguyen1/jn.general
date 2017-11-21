@@ -22,7 +22,7 @@
 view_duplicated <- function(data, ...){
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
   assertthat::assert_that(is.data.frame(data))
-
+  
   if(nrow(data) == 0) return(data)
   
   keys <- as.character(substitute(list(...))[-1])
