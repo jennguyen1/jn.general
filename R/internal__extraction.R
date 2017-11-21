@@ -18,5 +18,5 @@ extraction <- function(list_data, rbind, recursive){
   names(out) <- varname
 
   if(recursive) out <- lapply(out, extraction, rbind = rbind, recursive = recursive) # runs recursively
-  return(out)
+  out
 }

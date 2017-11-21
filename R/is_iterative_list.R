@@ -14,7 +14,7 @@
 #' @export
 #'
 #' @examples 
-#' x <- purrr::rerun(5, x = list(a = runif(1), b = rnorm(15), c = list(1, 2)), y1 = runif(12), i = iris)
+#' x <- purrr::rerun(5, x = list(a = runif(1), b = rnorm(15)), y1 = runif(12), i = if(sample(c(TRUE, FALSE), 1)) head(iris) else NULL)
 #' is_iterative_list(x)
 
 is_iterative_list <- function(l){
@@ -22,18 +22,13 @@ is_iterative_list <- function(l){
     is.list(l),
     !is.data.frame(l)
   )
+  assertthat::assert_that(length(l) > 1, msg = "Input l length must be greater than 1")
   
-  everything_named <- function(l){
-    n <- names(unlist(l))
-    all(n != "")
-  }
-  if(!everything_named(l)) return(FALSE)
-
-  # TODO currently does not detect names contain numbers at the end
-  rm_numbers <- function(e) unique(stringr::str_replace(names(unlist(e)), "[0-9]*$", ""))
-  nm <- rm_numbers(l[[1]])
-  check_all <- lapply(l, function(x) identical(rm_numbers(x), nm))
+  first <- check_names(l[[1]])
+  unnamed_items <- any(stringr::str_detect(first, "\\$ :"))
+  if(unnamed_items) return(FALSE)
+  
+  check_all <- lapply(l, function(x) identical(check_names(x), first))
   all(unlist(check_all))
 }
 
-## TODO remove this?
