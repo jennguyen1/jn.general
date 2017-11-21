@@ -45,7 +45,7 @@ test_that("view_duplicated when there are all duplicates", {
   expect_equal(view_duplicated(all_dups), all_dups)
 })
 
-test_that("view_duplicated requires a data frame", {
+test_that("view_duplicated handles missing and invalid arguments", {
   expect_error(view_duplicated())
   expect_error(view_duplicated(1:10))
   expect_error(view_duplicated(list()))
@@ -85,7 +85,7 @@ test_that("remove_duplicated when there all duplicates", {
   expect_equal(remove_duplicated(all_dups), head(all_dups, 10))
 })
 
-test_that("remove_duplicated check parameter types", {
+test_that("remove_duplicated handles missing data and invalid arguments", {
   expect_error(remove_duplicated())
   expect_error(remove_duplicated(1:10))
   expect_error(remove_duplicated(list()))

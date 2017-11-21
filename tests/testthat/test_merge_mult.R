@@ -58,7 +58,7 @@ test_that("merge_mult merges varying merge functions", {
   test_me_no_suffix(dplyr::anti_join)
 })
 
-test_that("merge_mult with empty data frames", {
+test_that("merge_mult handles empty data frames", {
   test <- merge_mult_to_tibble(y1, y2, y3, f = dplyr::inner_join, by = c("id", "x"), suffixes = letters[1:3])
   actual <- head(y1, 0)
   expect_equal(test, actual)

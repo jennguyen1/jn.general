@@ -66,7 +66,7 @@ test_that("rename_list applies correct name to each element", {
   expect_equal(test, actual)
 })
 
-test_that("rename_list takes in a named list or list and a vector of names", {
+test_that("rename_list requires a named list or list and a vector of names", {
   expect_error(rename_list())
   expect_error(rename_list(head(iris)))
   
@@ -82,7 +82,7 @@ test_that("rename_list takes in a named list or list and a vector of names", {
   expect_error(rename_list(l))
 })
 
-test_that("extract_list takes in an iterative list and a set of booleans", {
+test_that("extract_list handles invalid data", {
   l <- rerun(5, x = list(b = rnorm(15), c = c(1, 2)), y1 = runif(12), i = if(sample(c(TRUE, FALSE), 1)) head(iris) else NULL)
   expect_error(extract_list())
   expect_error(extract_list(l, 1))
@@ -92,8 +92,8 @@ test_that("extract_list takes in an iterative list and a set of booleans", {
   expect_error(extract_list(l))
 })
 
-test_that("extract_list takes in an iterative list and a set of booleans", {
-  l <- rerun(3, x = list(b = rnorm(15), c = c(1, 2)), i = if(sample(c(TRUE, FALSE), 1)) head(iris) else NULL)
+test_that("extract_list extracts and accumulates objects in list", {
+  l <- rerun(3, x = list(b = rnorm(15), c = c(1, 2)), i = if(sample(c(TRUE, FALSE), 1, prob = c(.90, .10))) head(iris) else NULL)
   test <- extract_list(l)
   actual <- list(
     x = list(
@@ -104,3 +104,4 @@ test_that("extract_list takes in an iterative list and a set of booleans", {
   )
   expect_equal(test, actual)
 })
+

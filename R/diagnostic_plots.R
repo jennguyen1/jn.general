@@ -11,6 +11,7 @@
 #' @export
 
 diagnostic_plots <- function(mod){
+  assertthat::assert_that(!missing(mod), msg = "Input mod is missing")
   assertthat::assert_that( any(class(mod) %in% c("lm", "glm")), msg = "Invalid mod argument")
   if( any(class(mod) %in% "glm") ) {
     return( glm_plot(mod) )

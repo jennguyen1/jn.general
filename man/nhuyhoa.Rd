@@ -5,7 +5,7 @@
 \alias{nhuyhoa}
 \alias{nhuyhoa_df_print}
 \alias{run_recipes}
-\title{Functions for nhuyhoa jekyll blog}
+\title{Functions for nhuyhoa Jekyll Blog}
 \usage{
 nhuyhoa(recipes = FALSE)
 

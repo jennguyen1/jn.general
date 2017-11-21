@@ -54,7 +54,7 @@ test_that("to_be splits data frames", {
   expect_equal(to_be_random$not_to_be, not_in_random)
 })
 
-test_that("to_be empty data frames", {
+test_that("to_be handles empty data frames", {
   to_be_empty_rows <- to_be(d, subset, x != 100)
   expect_equal(to_be_empty_rows$to_be, d)
   expect_equal(to_be_empty_rows$not_to_be, empty_df)
