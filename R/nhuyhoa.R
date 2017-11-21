@@ -1,4 +1,5 @@
-#' Functions for nhuyhoa jekyll blog
+
+#' Functions for nhuyhoa Jekyll Blog
 #'
 #' Functions to use when running jekyll blog
 #'
