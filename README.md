@@ -1,5 +1,7 @@
 # jn.general
 
+[![Travis-CI Build Status](https://travis-ci.org/jennguyen1/jn.general.svg?branch=master)](https://travis-ci.org/jennguyen1/jn.general)
+
 This package contains a variety of general functions for working with data
 
 **Working with Lists**
