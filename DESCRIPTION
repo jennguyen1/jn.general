@@ -15,6 +15,7 @@ Imports:
     purrr,
     stringr,
     purrrlyr,
+    ggplot2,
     devtools,
     broom,
     logging
