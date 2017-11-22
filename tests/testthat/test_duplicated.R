@@ -31,9 +31,20 @@ all_dups <- data.frame(
 
 
 # testing view_duplicated
-test_that("view_duplicated finds duplicates", {
+test_that("view_duplicated finds duplicates on specified columns", {
   expect_equal(view_duplicated(dups, y, z), dups_on_yz)
   expect_equal(view_duplicated(dups, x, y, z), dups_on_xyz)
+  
+  expect_equal(view_duplicated(dups, -x, -a), dups_on_yz)
+  expect_equal(view_duplicated(dups, one_of(c("x", "y", "z"))), dups_on_xyz)
+})
+
+test_that("view_duplicated finds duplicates on all columns", {
+  dups2 <- dups
+  dups2$a <- NULL
+  dups2_on_xyz <- dups_on_xyz
+  dups2_on_xyz$a <- NULL
+  expect_equal(view_duplicated(dups2), dups2_on_xyz)
 })
 
 test_that("view_duplicated when there are no duplicates", {
@@ -49,11 +60,12 @@ test_that("view_duplicated handles missing and invalid arguments", {
   expect_error(view_duplicated())
   expect_error(view_duplicated(1:10))
   expect_error(view_duplicated(list()))
-  expect_equal(view_duplicated(tibble::as.tibble(dups)), empty_df)
 })
 
 test_that("view_duplicated only accepts columns within data frame", {
   expect_error(view_duplicated(dups, q, v))
+  expect_error(view_duplicated(dups, list()))
+  expect_error(view_duplicated(dups, ends_with("\\dx")))
 })
 
 
@@ -81,7 +93,7 @@ test_that("remove_duplicated when there are no duplicates", {
   expect_equal(remove_duplicated(dups), dups)
 })
 
-test_that("remove_duplicated when there all duplicates", {
+test_that("remove_duplicated when there are all duplicates", {
   expect_equal(remove_duplicated(all_dups), head(all_dups, 10))
 })
 

@@ -9,7 +9,7 @@ view_duplicated(data, ...)
 \arguments{
 \item{data}{a data frame}
 
-\item{...}{columns to search for duplicated values; defaults to all arguments}
+\item{...}{columns to search for duplicated values, defaults to all arguments; can also apply dplyr special functions}
 }
 \value{
 a data frame with duplicated rows by given columns
@@ -18,10 +18,11 @@ a data frame with duplicated rows by given columns
 Finds all duplicated rows by given columns. Equivalent to doing data[duplicated(data) | duplicated(data, fromLast = TRUE), ]
 }
 \examples{
-d <- data.frame(x = rep(1:3, each=4), y = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))
-view_duplicated(data = d, y, z)
+d <- data.frame(x1 = rep(1:3, each=4), x2 = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))
+view_duplicated(data = d, x2, z)
 view_duplicated(d, a, z)
 view_duplicated(d)
+view_duplicated(d, starts_with("x"))
 
 }
 \seealso{
