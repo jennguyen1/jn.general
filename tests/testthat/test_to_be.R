@@ -67,6 +67,10 @@ test_that("to_be handles empty data frames", {
   to_be_empty <- to_be(empty_df, subset, x == 1)
   expect_equal(to_be_empty$to_be, empty_df)
   expect_equal(to_be_empty$not_to_be, empty_df)
+  
+  to_be_empty <- to_be(d, dplyr::select, starts_with("\\d4"))
+  expect_equal(to_be_empty$to_be, empty_cols)
+  expect_equal(to_be_empty$not_to_be, d)
 })
 
 test_that("to_be requires a data frame", {
