@@ -39,7 +39,7 @@ to_be <- function(x, f, ...){
   assertthat::assert_that(is.data.frame(to_be), msg = "The function did not return a data frame")
 
   if( (nrow(the_question) != nrow(to_be)) & (ncol(the_question) != ncol(to_be)) ){
-    assertthat::assert_that(FALSE, msg = "The function should only apply one one dimension of the data frame")
+    stop("The function should only apply one one dimension of the data frame")
   } else if( nrow(the_question) != nrow(to_be) ){
     not_to_be <- dplyr::anti_join(the_question,to_be, by = colnames(the_question))
   } else if( ncol(the_question) != ncol(to_be) ){

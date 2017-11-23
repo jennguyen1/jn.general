@@ -27,6 +27,7 @@
 extract_list <- function(l, rbind = TRUE, recursive = TRUE){
   assertthat::assert_that(!missing(l), msg = "Input l is missing")
   assertthat::assert_that(is_iterative_list(l), msg = "Input l is not an iterative list")
-  assertthat::assert_that(is.logical(rbind), is.logical(recursive))
+  assertthat::assert_that(is.logical(rbind), msg = "rbind is not a boolean")
+  assertthat::assert_that(is.logical(recursive), msg = "recursive is not a boolean")
   extraction(l, rbind = rbind, recursive = recursive)
 }

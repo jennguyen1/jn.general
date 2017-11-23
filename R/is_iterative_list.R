@@ -18,10 +18,7 @@
 #' is_iterative_list(x)
 
 is_iterative_list <- function(l){
-  assertthat::assert_that(
-    is.list(l),
-    !is.data.frame(l)
-  )
+  assertthat::assert_that(is.list(l), !is.data.frame(l), msg = "Input l must be a list (not a data.frame)")
   assertthat::assert_that(length(l) > 1, msg = "Input l length must be greater than 1")
   
   first <- check_names(l[[1]])

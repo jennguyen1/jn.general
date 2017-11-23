@@ -23,10 +23,8 @@
 remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary = TRUE){
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
   assertthat::assert_that(opt_delete %in% c("all", "from first", "from last"), msg = "Invalid delete option")
-  assertthat::assert_that(
-    is.data.frame(data),
-    is.logical(opt_summary)
-  )
+  assertthat::assert_that(is.data.frame(data))
+  assertthat::assert_that(is.logical(opt_summary), msg = "opt_summary is not a boolean")
   
   split_data <- to_be(data, view_duplicated, ...)
   dups <- split_data$to_be
