@@ -3,7 +3,7 @@
 This package contains a variety of general functions for working with data
 
 **Working with Vectors**
-- `make_outliers_na()` makes all values beyond specified sds from the mean NA (mark for removal)
+- `make_outliers_na()` makes all values beyond specified sd from the mean NA (mark for removal)
 
 **Working with Lists**
 - `rename_list()` adds an identifier column to (nested) data frames inside a list with the names of the list elements
