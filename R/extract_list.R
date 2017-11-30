@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' x <- purrr::rerun(3, 
-#'   WI = list(a = matrix(1:6, nrow = 2, b = f = data.frame(i = 1:10, j = 1:10))),
+#'   WI = list(a = matrix(1:6, nrow = 2), b = data.frame(i = 1:10, j = 1:10)),
 #'   MN = list(cold = list(blue = runif(5), red = runif(15)), hot = rnorm(3)),
 #'   CA = LETTERS
 #' )
