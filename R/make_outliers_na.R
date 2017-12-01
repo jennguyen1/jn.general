@@ -15,6 +15,8 @@
 #' 
 
 make_outliers_na <- function(x, multiplier){
+  "Make all values beyond specified standard deviations from the mean NA"
+  
   assertthat::assert_that(!missing(x), !missing(multiplier), msg = "Inputs are missing")
   assertthat::assert_that(is.numeric(x), is.numeric(multiplier))
   assertthat::assert_that(length(x) > 1, msg = "Input x must contain more than 2 values")

@@ -26,6 +26,8 @@
 #' rename_list(l)
 
 rename_list <- function(my_list, names = NULL){
+  "Loops through the elements of a list and add a name_id column to data.frames corresponding to provided names"
+  
   assertthat::assert_that(!missing(my_list), msg = "Input my_list is missing")
   assertthat::assert_that(is.list(my_list) & !is.data.frame(my_list), msg = "Input my_list must be a list (not a data.frame)")
   assertthat::assert_that(!(is.null(names) & is.null(names(my_list))), msg = "Input names is missing")

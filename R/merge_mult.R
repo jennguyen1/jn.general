@@ -23,6 +23,8 @@
 #' 
 
 merge_mult <- function(..., f, by, suffixes){
+  "Merges multiple data frames"
+  
   l <- list(...)
   if(length(l) == 1) l <- l[[1]]
   if(is.character(by)) by <- list(by)

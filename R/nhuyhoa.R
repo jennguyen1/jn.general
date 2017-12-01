@@ -18,6 +18,8 @@ NULL
 #' @rdname nhuyhoa
 #' @export
 nhuyhoa <- function(recipes = FALSE){
+  "Implements changes to jekyll blog"
+  
   assertthat::assert_that(basename(getwd()) == "nhuyhoa", msg = "Invalid working directory")
   if(recipes) run_recipes()
   servr::jekyll(dir = ".", input = c(".", "_source", "_posts"),
@@ -29,6 +31,8 @@ nhuyhoa <- function(recipes = FALSE){
 #' @rdname nhuyhoa
 #' @export
 nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"presenttab\"", ...){
+  "Formatting for blog tables"
+  
   if(data){ # printing data
     df %>% head(head) %>% knitr::kable(format = "html", align = "c", ...)
   } else{ # presenting tables
@@ -40,6 +44,8 @@ nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"p
 #' @rdname nhuyhoa
 #' @export
 run_recipes <- function(){
+  "Regenerate recipes files"
+  
   connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = "_data/recipes.db")
   recipes <- RSQLite::dbGetQuery(conn = connect, statement = "SELECT * FROM recipes")
   RSQLite::dbDisconnect(conn = connect)

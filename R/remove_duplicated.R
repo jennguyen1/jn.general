@@ -1,7 +1,7 @@
 
 #' Removes Duplicated Rows
 #'
-#' Removes duplicated data by given columns
+#' Removes duplicated data by column(s)
 #'
 #' @param data a data frame
 #' @param ... columns to search for duplicated values; defaults to all arguments
@@ -21,6 +21,8 @@
 #' remove_duplicated(d, y, z)
 
 remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary = TRUE){
+  "Remove duplicates by column(s)"
+  
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
   assertthat::assert_that(opt_delete %in% c("all", "from first", "from last"), msg = "Invalid delete option")
   assertthat::assert_that(is.data.frame(data))

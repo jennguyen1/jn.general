@@ -19,7 +19,7 @@ Element "to_be" contains the subsetted object \cr
 Element "not_to_be" contains the opposite of the subsetted object (anti-subset) \cr
 }
 \description{
-Returns the subset and the opposite of the subset (anti-subset) of data frames.
+Obtains the subset and the opposite of the subset (anti-subset) of data frames.
 }
 \examples{
 to_be(mtcars, dplyr::slice, 1:5)

@@ -19,7 +19,7 @@ remove_duplicated(data, ..., opt_delete = "from first", opt_summary = TRUE)
 Returns a data frame with duplicated rows given by columns removed
 }
 \description{
-Removes duplicated data by given columns
+Removes duplicated data by column(s)
 }
 \examples{
 d <- data.frame(x = rep(1:3, each=4), y = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))

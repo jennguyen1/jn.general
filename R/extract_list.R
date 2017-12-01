@@ -25,6 +25,8 @@
 #'
 
 extract_list <- function(l, rbind = TRUE, recursive = TRUE){
+  "Accumulates data structures of the same name (from an iterative list) into a common data structure."
+  
   assertthat::assert_that(!missing(l), msg = "Input l is missing")
   assertthat::assert_that(is_iterative_list(l), msg = "Input l is not an iterative list")
   assertthat::assert_that(is.logical(rbind), msg = "rbind is not a boolean")

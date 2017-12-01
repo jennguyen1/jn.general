@@ -15,7 +15,7 @@ view_duplicated(data, ...)
 a data frame with duplicated rows by given columns
 }
 \description{
-Finds all duplicated rows by given columns. Equivalent to doing data[duplicated(data) | duplicated(data, fromLast = TRUE), ]
+Finds all duplicated rows by column(s). Equivalent to doing data[duplicated(data) | duplicated(data, fromLast = TRUE), ]
 }
 \examples{
 d <- data.frame(x1 = rep(1:3, each=4), x2 = rep(1:4, each=3), z = rep(1:2, 6), a = rep(1:6, 2))

@@ -19,6 +19,8 @@
 #'
 
 complete_cases <- function(data, ...){
+  "Removes NA observations by column(s)"
+  
   assertthat::assert_that(!missing(data), msg = "Input data is missing")
   assertthat::assert_that(is.data.frame(data))
 

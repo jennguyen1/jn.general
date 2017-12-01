@@ -1,7 +1,7 @@
 
 #' To Be or Not To Be
 #'
-#' Returns the subset and the opposite of the subset (anti-subset) of data frames. 
+#' Obtains the subset and the opposite of the subset (anti-subset) of data frames. 
 #'
 #' @param x an object to be subsetted
 #' @param f a subsetting function (subset, dplyr::slice, dplyr::filter, dplyr::select, etc) that applies to only one dimension of the data frame
@@ -22,6 +22,8 @@
 #'
 
 to_be <- function(x, f, ...){
+  "Obtains the subset and the opposite of a subset"
+  
   assertthat::assert_that(
     is.data.frame(x),
     is.function(f)

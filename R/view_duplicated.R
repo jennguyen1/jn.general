@@ -1,7 +1,7 @@
 
 #' Show Duplicated Rows
 #'
-#' Finds all duplicated rows by given columns. Equivalent to doing data[duplicated(data) | duplicated(data, fromLast = TRUE), ]
+#' Finds all duplicated rows by column(s). Equivalent to doing data[duplicated(data) | duplicated(data, fromLast = TRUE), ]
 #'
 #' @param data a data frame
 #' @param ... columns to search for duplicated values, defaults to all arguments; can also apply dplyr special functions
@@ -21,6 +21,8 @@
 #'
 
 view_duplicated <- function(data, ...){
+  "Finds all duplicated rows by column(s)"
+  
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
   assertthat::assert_that(is.data.frame(data))
   
