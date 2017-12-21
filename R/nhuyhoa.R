@@ -142,5 +142,9 @@ display_instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
   }
 
 
-  purrrlyr::by_row(recipe_info, make_script)
+  parallel::mclapply(1:nrow(recipe_info), function(i){
+    row <- dplyr::slice(recipe_info, i)
+    make_script(row)
+  }, mc.cores = 2)
+  # purrrlyr::by_row(recipe_info, make_script)
 }
