@@ -4,14 +4,14 @@
 \alias{remove_duplicated}
 \title{Removes Duplicated Rows}
 \usage{
-remove_duplicated(data, ..., opt_delete = "from first", opt_summary = TRUE)
+remove_duplicated(data, ..., opt_keep = "first", opt_summary = TRUE)
 }
 \arguments{
 \item{data}{a data frame}
 
 \item{...}{columns to search for duplicated values; defaults to all arguments}
 
-\item{opt_delete}{string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate, "from last" keeps the last duplicate. Default is "from first".}
+\item{opt_keep}{string, which value to keep; takes the values "first", "last", or "none". "none" deletes all duplicated entries, "first" keeps the first duplicate, "last" keeps the last duplicate. Default is "first".}
 
 \item{opt_summary}{boolean, whether to log drop summaries}
 }

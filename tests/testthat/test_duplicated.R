@@ -75,17 +75,17 @@ test_that("removes_duplicated removes duplicates", {
   rm_last_on_yz <- dplyr::anti_join(dups, dplyr::slice(dups_on_yz, c(1, 3, 5, 7)))
   rm_all_on_yz <- dplyr::anti_join(dups, dups_on_yz)
   
-  expect_equal(remove_duplicated(dups, y, z, opt_delete = "from first"), rm_first_on_yz)
-  expect_equal(remove_duplicated(dups, y, z, opt_delete = "from last"), rm_last_on_yz)
-  expect_equal(remove_duplicated(dups, y, z, opt_delete = "all"), rm_all_on_yz)
+  expect_equal(remove_duplicated(dups, y, z, opt_keep = "first"), rm_first_on_yz)
+  expect_equal(remove_duplicated(dups, y, z, opt_keep = "last"), rm_last_on_yz)
+  expect_equal(remove_duplicated(dups, y, z, opt_keep = "none"), rm_all_on_yz)
   
   rm_first_on_xyz <- dplyr::anti_join(dups, dplyr::slice(dups_on_xyz, c(2, 4)))
   rm_last_on_xyz <- dplyr::anti_join(dups, dplyr::slice(dups_on_xyz, c(1, 3)))
   rm_all_on_xyz <- dplyr::anti_join(dups, dups_on_xyz)
   
-  expect_equal(remove_duplicated(dups, x, y, z, opt_delete = "from first"), rm_first_on_xyz)
-  expect_equal(remove_duplicated(dups, x, y, z, opt_delete = "from last"), rm_last_on_xyz)
-  expect_equal(remove_duplicated(dups, x, y, z, opt_delete = "all"), rm_all_on_xyz)
+  expect_equal(remove_duplicated(dups, x, y, z, opt_keep = "first"), rm_first_on_xyz)
+  expect_equal(remove_duplicated(dups, x, y, z, opt_keep = "last"), rm_last_on_xyz)
+  expect_equal(remove_duplicated(dups, x, y, z, opt_keep = "none"), rm_all_on_xyz)
 })
 
 test_that("remove_duplicated when there are no duplicates", {
@@ -101,9 +101,9 @@ test_that("remove_duplicated handles missing data and invalid arguments", {
   expect_error(remove_duplicated())
   expect_error(remove_duplicated(1:10))
   expect_error(remove_duplicated(list()))
-  expect_error(remove_duplicated(dups, opt_delete = "something"))
-  expect_error(remove_duplicated(dups, opt_delete = 1))
-  expect_error(remove_duplicated(dups, opt_delete = TRUE))
+  expect_error(remove_duplicated(dups, opt_keep = "something"))
+  expect_error(remove_duplicated(dups, opt_keep = 1))
+  expect_error(remove_duplicated(dups, opt_keep = TRUE))
   expect_error(remove_duplicated(dups, opt_summary = "something"))
   expect_error(remove_duplicated(dups, opt_summary = 1))
 })

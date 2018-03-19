@@ -5,7 +5,7 @@
 #'
 #' @param data a data frame
 #' @param ... columns to search for duplicated values; defaults to all arguments
-#' @param opt_delete string, options for deletion; takes the values "from first", "from last", or "all". "all" deletes all duplicated entries, "from first" keeps the first duplicate, "from last" keeps the last duplicate. Default is "from first".
+#' @param opt_keep string, which value to keep; takes the values "first", "last", or "none". "none" deletes all duplicated entries, "first" keeps the first duplicate, "last" keeps the last duplicate. Default is "first".
 #' @param opt_summary boolean, whether to log drop summaries
 #'
 #' @return Returns a data frame with duplicated rows given by columns removed
@@ -20,11 +20,11 @@
 #' view_duplicated(d, y, z)
 #' remove_duplicated(d, y, z)
 
-remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary = TRUE){
+remove_duplicated <- function(data, ..., opt_keep = "first", opt_summary = TRUE){
   "Remove duplicates by column(s)"
   
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
-  assertthat::assert_that(opt_delete %in% c("all", "from first", "from last"), msg = "Invalid delete option")
+  assertthat::assert_that(opt_keep %in% c("none", "first", "last"), msg = "Invalid delete option")
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(is.logical(opt_summary), msg = "opt_summary is not a boolean")
   
@@ -32,7 +32,7 @@ remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary 
   dups <- split_data$to_be
   no_dups <- split_data$not_to_be
 
-  if(opt_delete == "all"){
+  if(opt_keep == "none"){
     out_data <- no_dups
 
   } else {
@@ -42,9 +42,9 @@ remove_duplicated <- function(data, ..., opt_delete = "from first", opt_summary 
       fix_dups <- subset(dups, !duplicated(dups))
     } else{
       filter_f <- switch(
-        opt_delete,
-        "from first" = head,
-        "from last" = tail
+        opt_keep,
+        "first" = head,
+        "last" = tail
       )
       fix_dups <- dups %>% 
         dplyr::group_by_at(group_vars) %>% 

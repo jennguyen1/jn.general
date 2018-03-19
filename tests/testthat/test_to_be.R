@@ -39,7 +39,7 @@ test_that("to_be splits data frames", {
   expect_equal(to_be_head$not_to_be, tl)
   
   dups <- view_duplicated(d, x, y)
-  no_dups <- remove_duplicated(d, x, y, opt_delete = "all")
+  no_dups <- remove_duplicated(d, x, y, opt_keep = "none")
   to_be_dups <- to_be(d, view_duplicated, x, y)
   expect_equal(to_be_dups$to_be, dups)
   expect_equal(to_be_dups$not_to_be, no_dups)
