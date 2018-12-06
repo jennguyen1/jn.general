@@ -15,12 +15,12 @@
 #' complete_cases(data = d, x2, z)
 #' complete_cases(d, a, z)
 #' complete_cases(d)
-#' complete_cases(d, starts_with("x"))
+#' complete_cases(d, dplyr::starts_with("x"))
 #'
 
 complete_cases <- function(data, ...){
   "Removes NA observations by column(s)"
-  
+
   assertthat::assert_that(!missing(data), msg = "Input data is missing")
   assertthat::assert_that(is.data.frame(data))
 

@@ -25,7 +25,7 @@ Obtains the subset and the opposite of the subset (anti-subset) of data frames.
 to_be(mtcars, dplyr::slice, 1:5)
 to_be(mtcars, subset, cyl != 4)
 to_be(mtcars, dplyr::filter, cyl != 4, mpg > 20)
-to_be(mtcars, dplyr::select, -one_of(c("gear", "vs")))
+to_be(mtcars, dplyr::select, -dplyr::one_of(c("gear", "vs")))
 to_be(iris, view_duplicated)
 
 }

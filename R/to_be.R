@@ -1,7 +1,7 @@
 
 #' To Be or Not To Be
 #'
-#' Obtains the subset and the opposite of the subset (anti-subset) of data frames. 
+#' Obtains the subset and the opposite of the subset (anti-subset) of data frames.
 #'
 #' @param x an object to be subsetted
 #' @param f a subsetting function (subset, dplyr::slice, dplyr::filter, dplyr::select, etc) that applies to only one dimension of the data frame
@@ -17,13 +17,13 @@
 #' to_be(mtcars, dplyr::slice, 1:5)
 #' to_be(mtcars, subset, cyl != 4)
 #' to_be(mtcars, dplyr::filter, cyl != 4, mpg > 20)
-#' to_be(mtcars, dplyr::select, -one_of(c("gear", "vs")))
+#' to_be(mtcars, dplyr::select, -dplyr::one_of(c("gear", "vs")))
 #' to_be(iris, view_duplicated)
 #'
 
 to_be <- function(x, f, ...){
   "Obtains the subset and the opposite of a subset"
-  
+
   assertthat::assert_that(
     is.data.frame(x),
     is.function(f)
@@ -31,12 +31,12 @@ to_be <- function(x, f, ...){
 
   the_question <- x
   to_be <- tryCatch({
-    f(the_question, ...)  
+    f(the_question, ...)
   }, error = function(err){
     message(err$message)
-    stop("The function could not be applied to the dataframe as specified")  
+    stop("The function could not be applied to the dataframe as specified")
   })
-  
+
   # check in case drop = TRUE
   assertthat::assert_that(is.data.frame(to_be), msg = "The function did not return a data frame")
 

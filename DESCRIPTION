@@ -6,8 +6,10 @@ Date: 2017-11-17
 Author: JN
 Maintainer: <jnnguyen2@wisc.edu>
 Description: Code base for functions I use a lot
-License: JN
+License: MIT | file LICENSE
 LazyData: TRUE
+Depends: 
+  R (>= 3.4.0)
 Imports:
     assertthat, 
     dplyr,
@@ -24,4 +26,4 @@ Suggests:
     knitr,
     servr,
     survival
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

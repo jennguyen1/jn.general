@@ -22,7 +22,7 @@ d <- data.frame(x1 = rep(1:3, each=4), x2 = rep(1:4, each=3), z = rep(1:2, 6), a
 view_duplicated(data = d, x2, z)
 view_duplicated(d, a, z)
 view_duplicated(d)
-view_duplicated(d, starts_with("x"))
+view_duplicated(d, dplyr::starts_with("x"))
 
 }
 \seealso{

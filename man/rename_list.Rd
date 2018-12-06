@@ -15,15 +15,16 @@ rename_list(my_list, names = NULL)
 a list
 }
 \description{
-Loops through the elements of a list and adds a name_id column to data.frames 
+Loops through the elements of a list and adds a name_id column to data.frames
 corresponding to the provided names.
 }
 \examples{
-
+\dontrun{
 # example 1
 paths <- list.files(directory)
 files <- lapply(paths, fread)
 rename_list(list = files, names = paths)
+}
 
 # example 2
 l <- purrr::rerun(5, x = list(a = head(mtcars), b = head(iris), c = list(o = 1, p = list(q = head(airquality), u = 1:10))), y = head(mtcars))

@@ -29,7 +29,10 @@ y3 <- data.frame(id = 1:15, id2 = rep(c("A", "B", "C"), 5), var = runif(15))
 
 # merge by various attributes
 merge_mult(y1, y2, y3, f = dplyr::inner_join, by = list("id", c("id", "id2")), suffixes = letters[1:3])
+
+\dontrun{
 # equivalent to:
 merge(y1, y2, by = "id") \%>\% merge(y3, by = c("id", "id2"))
+}
 
 }

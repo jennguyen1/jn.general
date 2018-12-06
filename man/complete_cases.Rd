@@ -22,7 +22,7 @@ d <- data.frame(x1 = rep(1:3, each=4), x2 = rep(1:4, each=3), z = rep(1:2, 6), a
 complete_cases(data = d, x2, z)
 complete_cases(d, a, z)
 complete_cases(d)
-complete_cases(d, starts_with("x"))
+complete_cases(d, dplyr::starts_with("x"))
 
 }
 \seealso{

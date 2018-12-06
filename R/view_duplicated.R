@@ -17,17 +17,17 @@
 #' view_duplicated(data = d, x2, z)
 #' view_duplicated(d, a, z)
 #' view_duplicated(d)
-#' view_duplicated(d, starts_with("x"))
+#' view_duplicated(d, dplyr::starts_with("x"))
 #'
 
 view_duplicated <- function(data, ...){
   "Finds all duplicated rows by column(s)"
-  
+
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
   assertthat::assert_that(is.data.frame(data))
-  
+
   if(nrow(data) == 0) return(data)
-  
+
   keys <- as.character(substitute(list(...))[-1])
   if( length(keys) == 0 ){
     d <- data

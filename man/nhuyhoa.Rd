@@ -2,7 +2,6 @@
 % Please edit documentation in R/nhuyhoa.R
 \name{nhuyhoa}
 \alias{nhuyhoa}
-\alias{nhuyhoa}
 \alias{nhuyhoa_df_print}
 \alias{run_recipes}
 \title{Functions for nhuyhoa Jekyll Blog}
