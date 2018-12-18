@@ -14,7 +14,6 @@ This package contains a variety of general functions for working with data
 - `remove_duplicated()` removes duplicated rows by specified columns
 - `merge_mult()` merge multiple data frames
 - `to_be()` returns the subset and anti-subset, supply own subsetting function or pre-existing functions (subset, filter, distinct, etc). Useful for splitting data sets and running analyses in parallel on both sets.
-- `complete_cases()` removes all NA observations for specified columns
 
 **Plots**
 - `diagnostic_plots()` generates diagnostic plots for lm and glm objects in ggplot2
