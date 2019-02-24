@@ -3,8 +3,7 @@ Type: Package
 Title: Generic functions I use
 Version: 1.0
 Date: 2017-11-17
-Author: JN
-Maintainer: <jnnguyen2@wisc.edu>
+Authors@R: person("Jennifer", "Nguyen", email = "jnnguyen2@wisc.edu", role = c("aut", "cre"))
 Description: Code base for functions I use a lot
 License: MIT + file LICENSE
 LazyData: TRUE
