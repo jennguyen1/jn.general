@@ -143,4 +143,5 @@ display_instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
 
 
   apply(recipe_info, 1, make_script)
+  invisible()
 }
