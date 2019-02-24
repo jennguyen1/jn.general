@@ -20,10 +20,13 @@ Imports:
     ggplot2,
     devtools,
     broom,
-    logging
+    logging,
+    RSQLite
 Suggests: 
     testthat,
     knitr,
     servr,
-    survival
+    survival,
+    rmarkdown
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

@@ -11,7 +11,7 @@
 #' @return Returns a data frame with duplicated rows given by columns removed
 #'
 #' @export
-#' 
+#'
 #' @import dplyr
 #' @seealso \code{\link{view_duplicated}} to look at duplicates (but not remove)
 #'
@@ -22,12 +22,12 @@
 
 remove_duplicated <- function(data, ..., opt_keep = "first", opt_summary = TRUE){
   "Remove duplicates by column(s)"
-  
+
   assertthat::assert_that(!missing("data"), msg = "Missing data argument")
   assertthat::assert_that(opt_keep %in% c("none", "first", "last"), msg = "Invalid delete option")
   assertthat::assert_that(is.data.frame(data))
   assertthat::assert_that(is.logical(opt_summary), msg = "opt_summary is not a boolean")
-  
+
   split_data <- to_be(data, view_duplicated, ...)
   dups <- split_data$to_be
   no_dups <- split_data$not_to_be
@@ -37,7 +37,7 @@ remove_duplicated <- function(data, ..., opt_keep = "first", opt_summary = TRUE)
 
   } else {
     group_vars <- as.character(substitute(list(...))[-1])
-    
+
     if(length(group_vars) == 0){
       fix_dups <- subset(dups, !duplicated(dups))
     } else{
@@ -46,9 +46,11 @@ remove_duplicated <- function(data, ..., opt_keep = "first", opt_summary = TRUE)
         "first" = head,
         "last" = tail
       )
-      fix_dups <- dups %>% 
-        dplyr::group_by_at(group_vars) %>% 
-        purrrlyr::by_slice(~ filter_f(.x, 1)) %>% 
+      fix_dups <- dups %>%
+        dplyr::group_by_at(group_vars) %>%
+        tidyr::nest() %>%
+        dplyr::mutate(d = purrr::map(data, ~ filter_f(.x, 1))) %>%
+        dplyr::select(-data) %>%
         tidyr::unnest()
     }
 

@@ -3,18 +3,18 @@ context("Working with Duplicates")
 dups <- data.frame(
   x = rep(1:3, each = 4),
   y = rep(1:4, each = 3),
-  z = rep(1:2, 6), 
+  z = rep(1:2, 6),
   a = rep(1:6, 2)
 )
 empty_df <- head(dups, 0)
 dups_on_yz <- dplyr::bind_rows(list(
   data.frame(x = 1, y = 1, z = 1, a = 1),
   data.frame(x = 1, y = 1, z = 1, a = 3),
-  data.frame(x = 1, y = 2, z = 2, a = 4), 
-  data.frame(x = 2, y = 2, z = 2, a = 6), 
+  data.frame(x = 1, y = 2, z = 2, a = 4),
+  data.frame(x = 2, y = 2, z = 2, a = 6),
   data.frame(x = 2, y = 3, z = 1, a = 1),
   data.frame(x = 3, y = 3, z = 1, a = 3),
-  data.frame(x = 3, y = 4, z = 2, a = 4), 
+  data.frame(x = 3, y = 4, z = 2, a = 4),
   data.frame(x = 3, y = 4, z = 2, a = 6)
 ))
 dups_on_xyz <- dplyr::bind_rows(list(
@@ -34,7 +34,7 @@ all_dups <- data.frame(
 test_that("view_duplicated finds duplicates on specified columns", {
   expect_equal(view_duplicated(dups, y, z), dups_on_yz)
   expect_equal(view_duplicated(dups, x, y, z), dups_on_xyz)
-  
+
   expect_equal(view_duplicated(dups, -x, -a), dups_on_yz)
   expect_equal(view_duplicated(dups, one_of(c("x", "y", "z"))), dups_on_xyz)
 })
@@ -70,19 +70,19 @@ test_that("view_duplicated only accepts columns within data frame", {
 
 
 # testing remove_duplicated
-test_that("removes_duplicated removes duplicates", {
+test_that("remove_duplicated removes duplicates", {
   rm_first_on_yz <- dplyr::anti_join(dups, dplyr::slice(dups_on_yz, c(2, 4, 6, 8)))
   rm_last_on_yz <- dplyr::anti_join(dups, dplyr::slice(dups_on_yz, c(1, 3, 5, 7)))
   rm_all_on_yz <- dplyr::anti_join(dups, dups_on_yz)
-  
+
   expect_equal(remove_duplicated(dups, y, z, opt_keep = "first"), rm_first_on_yz)
   expect_equal(remove_duplicated(dups, y, z, opt_keep = "last"), rm_last_on_yz)
   expect_equal(remove_duplicated(dups, y, z, opt_keep = "none"), rm_all_on_yz)
-  
+
   rm_first_on_xyz <- dplyr::anti_join(dups, dplyr::slice(dups_on_xyz, c(2, 4)))
   rm_last_on_xyz <- dplyr::anti_join(dups, dplyr::slice(dups_on_xyz, c(1, 3)))
   rm_all_on_xyz <- dplyr::anti_join(dups, dups_on_xyz)
-  
+
   expect_equal(remove_duplicated(dups, x, y, z, opt_keep = "first"), rm_first_on_xyz)
   expect_equal(remove_duplicated(dups, x, y, z, opt_keep = "last"), rm_last_on_xyz)
   expect_equal(remove_duplicated(dups, x, y, z, opt_keep = "none"), rm_all_on_xyz)
