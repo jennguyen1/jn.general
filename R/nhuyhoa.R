@@ -19,7 +19,7 @@ NULL
 #' @export
 nhuyhoa <- function(recipes = FALSE){
   "Implements changes to jekyll blog"
-  
+
   assertthat::assert_that(basename(getwd()) == "nhuyhoa", msg = "Invalid working directory")
   if(recipes) run_recipes()
   servr::jekyll(dir = ".", input = c(".", "_source", "_posts"),
@@ -32,7 +32,7 @@ nhuyhoa <- function(recipes = FALSE){
 #' @export
 nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"presenttab\"", ...){
   "Formatting for blog tables"
-  
+
   if(data){ # printing data
     df %>% head(head) %>% knitr::kable(format = "html", align = "c", ...)
   } else{ # presenting tables
@@ -45,29 +45,29 @@ nhuyhoa_df_print <- function(df, head = 5, data = TRUE, attribute = "class = \"p
 #' @export
 run_recipes <- function(){
   "Regenerate recipes files"
-  
+
   connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = "_data/recipes.db")
   recipes <- RSQLite::dbGetQuery(conn = connect, statement = "SELECT * FROM recipes")
   RSQLite::dbDisconnect(conn = connect)
 
   # extract recipe pics
-  recipe_info <- recipes %>%
-    purrrlyr::by_row(function(r){
-      pat <- r$recipe %>%
-        stringr::str_replace(" \\(.*", "") %>%
-        stringr::str_replace_all(" ", "_")
-      pics <- list.files("figure/food/", pattern = pat)
-      stringr::str_subset(pics, stringr::str_interp("^${pat}\\d*.JPG"))
-    }, .to = "pictures")
+  recipe_info <- recipes
+  recipe_info$pictures <- apply(recipes, 1, function(r){
+    pat <- r['recipe'] %>%
+      stringr::str_replace(" \\(.*", "") %>%
+      stringr::str_replace_all(" ", "_")
+    pics <- list.files("figure/food/", pattern = pat)
+    stringr::str_subset(pics, glue::glue("^{pat}\\d*.JPG"))
+  })
 
 
   # generate recipe RMD files for website
   make_script <- function(df){
 
-    name <- df$recipe[1]
+    name <- df$recipe
 
     # recipe pictures - format for markdown/html
-    pictures <- df$pictures[[1]]
+    pictures <- df$pictures
     use_image <- pictures %>%
       paste0("![pic", 1:length(.), ']( {{"/figure/food/', ., '" | absolute_url }})') %>%
       paste(collapse = "\n\n")
@@ -92,8 +92,8 @@ lib(data)
 
 recipe_name <- '", name, "'
 connect <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = '../_data/recipes.db')
-ingredients_query <- stringr::str_interp('SELECT * FROM ingredients WHERE recipe = \"${recipe_name}\"')
-instructions_query <- stringr::str_interp('SELECT * FROM instructions WHERE recipe = \"${recipe_name}\"')
+ingredients_query <- glue::glue('SELECT * FROM ingredients WHERE recipe = \"{recipe_name}\"')
+instructions_query <- glue::glue('SELECT * FROM instructions WHERE recipe = \"{recipe_name}\"')
 ingredients <- RSQLite::dbGetQuery(conn = connect, statement = ingredients_query)
 instructions <- RSQLite::dbGetQuery(conn = connect, statement = instructions_query)
 RSQLite::dbDisconnect(conn = connect)
@@ -106,7 +106,7 @@ display_ingredients <- ingredients %>%
 add_cols <- purrr::discard(c('other', 'meat', 'veggie', 'fruit'), ~ .x %in% colnames(display_ingredients))
 for(c in add_cols) display_ingredients[,c] <- NA
 display_ingredients <- display_ingredients %>%
-  dplyr::select(other, meat, veggie, fruit) %>% 
+  dplyr::select(other, meat, veggie, fruit) %>%
   dplyr::mutate_all(~ ifelse(is.na(.x), '', .x)) %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
 
@@ -136,11 +136,11 @@ display_instructions %>% nhuyhoa_df_print(head = 100, data = FALSE, attribute = 
 ") %>% paste(collapse = "")
 
     name_edit <- stringr::str_replace_all(name, " ", "-")
-    file_name <- stringr::str_interp("_source/2017-05-15-${name_edit}.Rmd")
+    file_name <- glue::glue("_source/2017-05-15-{name_edit}.Rmd")
     write(script, file = file_name)
     return(script)
   }
 
 
-  purrrlyr::by_row(recipe_info, make_script)
+  apply(recipe_info, 1, make_script)
 }
