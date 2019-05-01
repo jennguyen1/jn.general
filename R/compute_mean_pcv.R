@@ -20,15 +20,10 @@ compute_mean_pcv <- function(d, var, ...){
   assertthat::assert_that(is.numeric(dplyr::pull(d, !!var)), msg = "var is not a numeric")
 
   # create values response_(n)
+  n_len <- max(stringr::str_length(dplyr::count(d, ...)$n))
   individual1 <- d %>%
     dplyr::select(..., !!var) %>%
-    dplyr::group_by(...)
-  n_len <- individual1 %>%
-    dplyr::summarise(n = dplyr::n()) %>%
-    dplyr::pull(n) %>%
-    stringr::str_length() %>%
-    max()
-  individual <- individual1 %>%
+    dplyr::group_by(...) %>%
     dplyr::mutate(
       my_col_id = stringr::str_pad(1:dplyr::n(), width = n_len, pad = "0"),
       my_col_nms = paste0("response_", my_col_id),
