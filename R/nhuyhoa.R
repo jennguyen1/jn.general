@@ -99,10 +99,13 @@ instructions <- RSQLite::dbGetQuery(conn = connect, statement = instructions_que
 RSQLite::dbDisconnect(conn = connect)
 
 display_ingredients <- ingredients %>%
-  group_by(recipe, type) %>%
-  mutate(n = 1:n()) %>%
-  ungroup() %>%
-  spread(type, ingredients)
+  dplyr::mutate(idx = ifelse(ingredients == 'any', 1, 0)) %>%
+  dplyr::arrange(idx, ingredients) %>%
+  dplyr::group_by(recipe, type) %>%
+  dplyr::mutate(n = row_number()) %>%
+  dplyr::ungroup() %>%
+  dplyr::select(-idx) %>%
+  tidyr::spread(type, ingredients)
 add_cols <- purrr::discard(c('other', 'meat', 'veggie', 'fruit'), ~ .x %in% colnames(display_ingredients))
 for(c in add_cols) display_ingredients[,c] <- NA
 display_ingredients <- display_ingredients %>%
@@ -111,7 +114,7 @@ display_ingredients <- display_ingredients %>%
   dplyr::rename(Other = other, Meat = meat, Veggie = veggie, Fruit = fruit)
 
 display_instructions <- instructions %>%
-  arrange(idx) %>%
+  dplyr::arrange(idx) %>%
   dplyr::select(instructions)
 ```
 
